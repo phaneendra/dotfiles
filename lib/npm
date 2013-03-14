@@ -15,8 +15,17 @@ run_npm() {
         [[ $? ]] && e_success "Done"
     else
         printf "\n"
-        e_error "Error: npm not found."
-        printf "Aborting...\n"
+        e_header "Installing nvm ..."
+
+        # Getting nvm from github repository
+        curl https://raw.github.com/creationix/nvm/master/install.sh | sh
+
+        e_header "Installing Node js using nvm ..."
+
+        # Installing node using nvm
+        nvm install 0.8
+        nvm alias default 0.8
+
         exit
     fi
 
