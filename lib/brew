@@ -19,16 +19,21 @@ run_brew() {
         local -a missing_formulae
         local -a desired_formulae=(
             'coreutils' # GNU core utilities (those that come with OS X are outdated)
+            'bash'
             'git'
+            'git-extras'
+            'imagemagick'
+            'mongodb'
+            'nginx'
             'ack'
             'bash-completion'
             'jpeg'
             'macvim --override-system-vim'
-            'node'
             'optipng'
             'phantomjs'
             'tree'
-            'wget'
+            'wget --enable-iri'
+            'webkit2png'
         )
 
         for index in ${!desired_formulae[*]}
