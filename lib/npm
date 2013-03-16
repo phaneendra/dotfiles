@@ -28,7 +28,6 @@ run_npm() {
         nvm install 0.8
         nvm alias default 0.8
 
-        exit
     fi
 
 }
