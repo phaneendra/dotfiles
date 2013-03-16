@@ -1,6 +1,8 @@
 #!/bin/bash
 
 DOTFILES_DIRECTORY="${HOME}/.dotfiles"
+WORKAREA_DIRECTORY="${HOME}/work"
+USERBIN_DIRECTORY="${HOME}/bin"
 DOTFILES_TARBALL_PATH="https://github.com/phaneendra/dotfiles/tarball/master"
 DOTFILES_GIT_REMOTE="https://github.com/phaneendra/dotfiles"
 
@@ -14,6 +16,14 @@ if [[ ! -d ${DOTFILES_DIRECTORY} ]]; then
     tar -zxf ${HOME}/dotfiles.tar.gz --strip-components 1 -C ${DOTFILES_DIRECTORY}
     # Remove the tarball
     rm -rf ${HOME}/dotfiles.tar.gz
+fi
+
+# If missing, work and bin directories create them
+if [[ ! -d ${WORKAREA_DIRECTORY} ]]; then
+    mkdir ${WORKAREA_DIRECTORY}
+fi
+if [[ ! -d ${USERBIN_DIRECTORY} ]]; then
+    mkdir ${USERBIN_DIRECTORY}
 fi
 
 cd ${DOTFILES_DIRECTORY}
