@@ -20,6 +20,8 @@ run_npm() {
         # Getting nvm from github repository
         curl https://raw.github.com/creationix/nvm/master/install.sh | sh
 
+        . ~/.nvm/nvm.sh
+
         e_header "Installing Node js using nvm ..."
 
         # Installing node using nvm
