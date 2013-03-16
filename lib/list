@@ -50,6 +50,10 @@ unzip -q iterm2.zip
 mv iTerm.app /Applications/
 rm iterm2.zip
 
+wget https://raw.github.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Dark.itermcolors
+wget https://raw.github.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Light.itermcolors
+mv Solarized*.itermcolors ~/Library/Application\ Support/iTerm/
+
 # Install Sublime Text 2
 wget -O SublimeText.dmg http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1.dmg
 hdiutil mount SublimeText.dmg
