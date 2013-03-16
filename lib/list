@@ -41,18 +41,8 @@ unzip -q Inconsolata-dz.otf.zip
 mv Inconsolata-dz.otf ~/Library/Fonts/
 rm Inconsolata-dz.otf.zip
 
-# Uninstall Alfred
-
-
 # Install Alfred
-wget -O Alfred.dmg http://cachefly.alfredapp.com/alfred_1.3.2_265.zip
-hdiutil mount Alfred.dmg
-cp -R /Volumes/Alfred.app/Alfred.app /Applications/
-hdiutil unmount /Volumes/Alfred.app
-rm Alfred.dmg
-
-# Uninstall Iterm2
-
+echo "Install Alfred from App Store"
 
 # Install iTerm2
 wget -O iterm2.zip http://iterm2.googlecode.com/files/iTerm2_v1_0_0.zip
@@ -60,5 +50,11 @@ unzip -q iterm2.zip
 mv iTerm.app /Applications/
 rm iterm2.zip
 
+# Install Sublime Text 2
+wget -O SublimeText.dmg http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1.dmg
+hdiutil mount SublimeText.dmg
+cp -R /Volumes/Sublime\ Text\ 2/Sublime\ Text\ 2.app /Applications/
+hdiutil unmount /Volumes/Sublime\ Text\ 2
+rm SublimeText.dmg
 
 }
