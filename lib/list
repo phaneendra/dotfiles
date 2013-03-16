@@ -34,4 +34,31 @@ Other:
     VLC
 EOT
 
+# Install fonts
+rm ~/Library/Fonts/Inconsolata-dz.otf
+wget http://media.nodnod.net/Inconsolata-dz.otf.zip
+unzip -q Inconsolata-dz.otf.zip
+mv Inconsolata-dz.otf ~/Library/Fonts/
+rm Inconsolata-dz.otf.zip
+
+# Uninstall Alfred
+
+
+# Install Alfred
+wget -O Alfred.dmg http://cachefly.alfredapp.com/alfred_1.3.2_265.zip
+hdiutil mount Alfred.dmg
+cp -R /Volumes/Alfred.app/Alfred.app /Applications/
+hdiutil unmount /Volumes/Alfred.app
+rm Alfred.dmg
+
+# Uninstall Iterm2
+
+
+# Install iTerm2
+wget -O iterm2.zip http://iterm2.googlecode.com/files/iTerm2_v1_0_0.zip
+unzip -q iterm2.zip
+mv iTerm.app /Applications/
+rm iterm2.zip
+
+
 }
