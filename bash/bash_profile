@@ -4,7 +4,6 @@
 
 declare -a files=(
     $HOME/.rvm/scripts/rvm # Load RVM into a shell session *as a function*
-    $HOME/.nvm/nvm.sh # This Loads nvm
     $HOME/.dotfiles/bash/bash_config # Configuration
     $HOME/.dotfiles/bash/bash_aliases # Aliases
     $HOME/.dotfiles/bash/functions/* # Functions
@@ -30,3 +29,9 @@ bash_completion_path="$(brew --prefix)/etc/bash_completion"
 if [[ -r $bash_completion_path ]]; then
     source $bash_completion_path
 fi
+
+# Load NVM
+[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh  # This loads NVM
+[[ -r $HOME/.nvm/bash_completion ]] && . $HOME/.nvm/bash_completion
+
+
