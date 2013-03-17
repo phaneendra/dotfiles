@@ -16,11 +16,13 @@ alias -- -="cd -"
 # Long form no user group, color
 alias l="ls -oG"
 # Order by last modified, long form no user group, color
-alias lt="ls -toG"
+alias lt="ls -rtoG"
 # List all except . and ..., color, mark file types, long form no user group, file size
 alias la="ls -AGFoh"
 # List all except . and ..., color, mark file types, long form no use group, order by last modified, file size
-alias lat="ls -AGFoth"
+alias lat="ls -AGForth"
+# Overide default ls to include color
+alias ls="ls -G"
 
 # Concatenate and print content of files (add line numbers)
 alias catn="cat -n"
