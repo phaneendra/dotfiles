@@ -263,9 +263,6 @@ defaults write com.apple.dock wvous-br-modifier -int 0
 # Finder: show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
-# Finder: show all hidden files
-defaults write com.apple.finder AppleShowAllFiles -bool true
-
 # Finder: disable the warning when changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
@@ -284,8 +281,8 @@ defaults write com.apple.finder QuitMenuItem -bool true
 # Finder: show the ~/Library folder (in OS X Lion)
 chflags nohidden ~/Library
 
-# Finder: show hidden files by default
-defaults write com.apple.finder AppleShowAllFiles -bool true
+# Finder: hide hidden files by default
+defaults write com.apple.finder AppleShowAllFiles -bool false
 
 # Finder: use list view in all windows by default
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
@@ -502,9 +499,9 @@ defaults write com.irradiatedsoftware.SizeUp ShowPrefsOnNextStart -bool false
 # Transmission.app                                                            #
 ###############################################################################
 
-# Use `~/Documents/Torrents` to store incomplete downloads
+# Use `~/Downloads/Torrents` to store incomplete downloads
 defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
-defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Documents/Torrents"
+defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Downloads/Torrents"
 
 # Don’t prompt for confirmation before downloading
 defaults write org.m0k.transmission DownloadAsk -bool false
