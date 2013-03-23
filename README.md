@@ -1,4 +1,4 @@
-# Dotfiles 
+# Dotfiles
 
 My OS X dotfiles.
 
@@ -73,6 +73,7 @@ Homebrew formulae:
 
 Node packages:
 
+* [yo](http://yeoman.io/)
 * [bower](http://twitter.github.com/bower/)
 * [grunt-cli](http://gruntjs.com/)
 * [jshint](http://www.jshint.com/)
