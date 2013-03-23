@@ -1,6 +1,6 @@
 #!/bin/bash
 
-run_npm() {
+run_node() {
 
     # Check for npm
     if type_exists 'npm'; then
