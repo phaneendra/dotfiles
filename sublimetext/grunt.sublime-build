@@ -1,0 +1,7 @@
+{
+	"cmd": ["grunt", "--no-color"] ,
+	"selector": ["source.js", "source.less", "source.json"] ,
+	"working_dir": "${project_path}" ,
+	"path": "$PATH:/Users/phaneendra/.nvm/v0.8.22/bin"
+	//"shell": true
+}

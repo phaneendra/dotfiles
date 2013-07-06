@@ -3,18 +3,14 @@
 	{
 		"selected_items":
 		[
+			[
+				"i",
+				"iterm2"
+			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "/Users/phaneendra/.dotfiles/sublimetext/Preferences.sublime-settings",
-			"settings":
-			{
-				"buffer_size": 636,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -22,6 +18,22 @@
 		"height": 375.0,
 		"selected_items":
 		[
+			[
+				"gitc",
+				"Git: Commit"
+			],
+			[
+				"ga",
+				"Git: Add Current File"
+			],
+			[
+				"gc",
+				"Git: Commit"
+			],
+			[
+				"gic",
+				"Git: Commit"
+			],
 			[
 				"inst",
 				"Package Control: Install Package"
@@ -55,16 +67,8 @@
 				"Git: Add Current File"
 			],
 			[
-				"gic",
-				"Git: Commit"
-			],
-			[
 				"gad",
 				"Git: Add Current File"
-			],
-			[
-				"gitc",
-				"Git: Commit"
 			],
 			[
 				"git com",
@@ -100,6 +104,12 @@
 	},
 	"file_history":
 	[
+		"/Users/phaneendra/.dotfiles/sublimetext/Preferences.sublime-settings",
+		"/Users/phaneendra/.dotfiles/lib/node",
+		"/Users/phaneendra/.dotfiles/bin/dotfiles",
+		"/Users/phaneendra/.dotfiles/lib/list",
+		"/Users/phaneendra/.dotfiles/README.md",
+		"/Users/phaneendra/.dotfiles/lib/npm",
 		"/Users/phaneendra/work/tmp/alignmenttest.js",
 		"/Users/phaneendra/Library/Application Support/Sublime Text 2/Packages/Nodejs/Nodejs.sublime-settings",
 		"/Users/phaneendra/Library/Application Support/Sublime Text 2/Packages/User/MacTerminal.sublime-settings",
@@ -116,14 +126,11 @@
 		"/Users/phaneendra/.dotfiles/git/gitignore",
 		"/Users/phaneendra/.dotfiles/.gitignore",
 		"/Users/phaneendra/.dotfiles/sublimetext/Package Control.sublime-settings",
-		"/Users/phaneendra/.dotfiles/sublimetext/Preferences.sublime-settings",
 		"/Users/phaneendra/Library/Application Support/Sublime Text 2/Packages/Git/Git.sublime-settings",
 		"/Users/phaneendra/Library/Application Support/Sublime Text 2/Packages/SideBarEnhancements/messages/11.13.2012.1305.0.txt",
 		"/Users/phaneendra/.bash_profile.local",
 		"/Users/phaneendra/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
-		"/Users/phaneendra/.dotfiles/lib/list",
 		"/Users/phaneendra/.dotfiles/bash/bash_aliases",
-		"/Users/phaneendra/.dotfiles/bin/dotfiles",
 		"/Users/phaneendra/.gitconfig"
 	],
 	"find":
@@ -142,6 +149,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"node",
 			"super+ctrl+a",
 			"javascript",
 			"finder",
@@ -165,40 +173,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "/Users/phaneendra/.dotfiles/sublimetext/Preferences.sublime-settings",
-					"settings":
-					{
-						"buffer_size": 636,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								351,
-								351
-							]
-						],
-						"settings":
-						{
-							"rulers":
-							[
-								120
-							],
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -208,7 +184,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 37.0
 	},
 	"layout":
 	{
@@ -255,6 +231,10 @@
 		"height": 500.0,
 		"selected_items":
 		[
+			[
+				"ri",
+				"/Users/phaneendra/work/richy/richy.sublime-project"
+			],
 			[
 				"",
 				"/Users/phaneendra/Library/Application Support/Sublime Text 2/Packages/User/dotfiles.sublime-project"

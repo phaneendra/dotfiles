@@ -2,16 +2,25 @@
 	"installed_packages":
 	[
 		"Alignment",
+		"Auto Semi-Colon",
+		"Color Highlighter",
+		"DocBlockr",
 		"Dotfiles Syntax Highlighting",
+		"EditorConfig",
 		"Emmet",
+		"FileDiffs",
 		"Git",
 		"Goto Documentation",
+		"LESS",
 		"MacTerminal",
 		"Nodejs",
 		"Package Control",
 		"SideBarEnhancements",
 		"SideBarGit",
 		"Solarized Color Scheme",
+		"Sublime-HTMLPrettify",
+		"SublimeLinter",
+		"SublimeREPL",
 		"Theme - Soda",
 		"WordCount"
 	]
