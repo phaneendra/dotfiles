@@ -25,8 +25,8 @@ run_node() {
         e_header "Installing Node js using nvm ..."
 
         # Installing node using nvm
-        nvm install 0.8
-        nvm alias default 0.8
+        nvm install 0.10
+        nvm alias default 0.10
 
     fi
 
