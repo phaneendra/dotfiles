@@ -1,2 +1,38 @@
 [
+	{ "keys": ["K"], "command": "next_view",
+	    "context":
+	    [
+	        { "key": "setting.command_mode", "operand": true },
+	        { "key": "setting.is_widget", "operand": false }
+	    ]
+	},
+	{ "keys": ["J"], "command": "prev_view",
+	    "context":
+	    [
+	        { "key": "setting.command_mode", "operand": true },
+	        { "key": "setting.is_widget", "operand": false }
+	    ]
+	},
+	{ "keys": ["j", "j"], "command": "exit_insert_mode",
+		"context":
+		[
+			{ "key": "setting.command_mode", "operand": false },
+			{ "key": "setting.is_widget", "operand": false }
+		]
+	},
+	{ "keys": ["u"], "command": "undo",
+		"context":
+		[
+			{ "key": "setting.insert_mode", "operand": true }
+		]
+	},
+	{ "keys": ["enter"], "command": "insert", "args": {"characters": "\n"},
+		"context":
+		[
+			{ "key": "setting.insert_mode", "operand": true },
+			{ "key": "setting.command_mode", "operand": false },
+			{ "key": "auto_complete_visible", "operator": "equal", "operand": false }
+		]
+	}
+
 ]

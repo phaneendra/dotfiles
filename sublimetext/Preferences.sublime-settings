@@ -11,7 +11,8 @@
 	"highlight_line": true,
 	"ignored_packages":
 	[
-		""
+		"",
+		"WordCount"
 	],
 	"open_files_in_new_window": false,
 	"rulers":
@@ -26,5 +27,5 @@
 	"theme": "Soda Dark.sublime-theme",
 	"trim_trailing_white_space_on_save": true,
 	"word_wrap": true,
-	"wrap_width": 120
+	"wrap_width": 80
 }

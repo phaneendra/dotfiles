@@ -1,4 +1,5 @@
 {
+	"auto_upgrade_last_run": null,
 	"installed_packages":
 	[
 		"Alignment",
@@ -11,10 +12,12 @@
 		"FileDiffs",
 		"Git",
 		"Goto Documentation",
+		"HTML Snippets",
 		"LESS",
 		"MacTerminal",
 		"Nodejs",
 		"Package Control",
+		"Quick File Creator",
 		"SideBarEnhancements",
 		"SideBarGit",
 		"Solarized Color Scheme",
