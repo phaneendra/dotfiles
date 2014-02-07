@@ -38,4 +38,7 @@ run_node() {
     NODE_VERSION=$(cat $NVM_DIR/alias/default)
     ln -nfs $NVM_DIR/$NODE_VERSION/bin/node /usr/local/bin/node
 
+    # install npm packages
+    npm install bower csslint generator-angular generator-karma generator-mobile generator-mocha generator-webapp grunt-cli jshint yo -g
+
 }
