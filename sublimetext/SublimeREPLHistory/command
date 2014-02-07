@@ -1,7 +1,0 @@
--version
--console.log version
--console.log("test");
--console.log("test");
--var test=0;
--var test=0
--console.log(test)
