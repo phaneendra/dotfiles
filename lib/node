@@ -3,17 +3,7 @@
 run_node() {
 
     # Check for npm
-    if type_exists 'npm'; then
-        e_header "Installing Node.js packages..."
-
-        # List of npm packages
-        local packages="yo bower grunt-cli jshint csslint"
-
-        # Install packages globally and quietly
-        npm install $packages --global --quiet
-
-        [[ $? ]] && e_success "Done"
-    else
+    if ! type_exists 'npm'; then
         printf "\n"
         e_header "Installing nvm ..."
 
@@ -25,20 +15,27 @@ run_node() {
         e_header "Installing Node js using nvm ..."
 
         # Installing node using nvm
-        nvm install 0.10.21
-        nvm alias default v0.10.21
-        nvm use v0.10.21
+        nvm install 0.10.31
+        nvm alias default v0.10.31
+        nvm use v0.10.31
 
     fi
     # Set node defaults
     NVM_DIR="$HOME/.nvm"
 
-    nvm alias default v0.10.21
-    nvm use v0.10.21
+    nvm alias default v0.10.31
+    nvm use v0.10.31
     NODE_VERSION=$(cat $NVM_DIR/alias/default)
     ln -nfs $NVM_DIR/$NODE_VERSION/bin/node /usr/local/bin/node
 
-    # install npm packages
-    npm install bower csslint generator-angular generator-karma generator-mobile generator-mocha generator-webapp grunt-cli jshint yo -g
+    e_header "Installing Node.js packages..."
+
+    # List of npm packages
+    local packages="bower csslint generator-angular generator-karma generator-mobile generator-mocha generator-webapp grunt-cli jshint ios-deploy ios-sim cca"
+
+    # Install packages globally and quietly
+    npm install $packages --global --quiet
+
+    [[ $? ]] && e_success "Done"
 
 }

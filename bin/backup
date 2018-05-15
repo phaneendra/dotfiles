@@ -10,7 +10,7 @@ RSYNC="/usr/bin/rsync"
 LOGGER="/usr/bin/logger"
 SRC="/"
 DST="/Volumes/Macintosh HD/"
-EXCLUDE="$HOME/.dotfiles/backup_excludes.txt"
+EXCLUDE="$HOME/dotfiles/backup_excludes.txt"
 
 # --verbose                increase verbosity
 # --archive                turn on archive mode (recursive copy + retain attributes)

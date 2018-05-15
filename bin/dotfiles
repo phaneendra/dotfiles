@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOTFILES_DIRECTORY="${HOME}/.dotfiles"
+DOTFILES_DIRECTORY="${HOME}/dotfiles"
 WORKAREA_DIRECTORY="${HOME}/work"
 USERBIN_DIRECTORY="${HOME}/bin"
 DOTFILES_TARBALL_PATH="https://github.com/phaneendra/dotfiles/tarball/master"
