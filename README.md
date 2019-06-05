@@ -1,198 +1,131 @@
-# Dotfiles
+# dotfiles
 
-My OS X dotfiles.
+![dotfiles](./preview/dotfiles.png?raw=true "dotfiles")
 
+WIP..
 
-## How to install
+## Some details
 
-The installation step requires the [XCode Command Line
-Tools](https://developer.apple.com/downloads) and may overwrite existing
-dotfiles in your HOME and `.vim` directories.
++ **OS**: Manjaro
++ **WM**: i3-gaps
++ **Terminal**: kitty and urxvt
++ **Shell**: bash-it
++ **File Manager**: pcmanfm for GUI, Ranger for terminal
++ **Bar**: polybar
++ **Bar Icons**: Typicons Font
++ **Launcher**: Rofi
++ **Editor**: NeoVim
++ **Browser**: Chrome
++ **Music players**: mpd (with ncmpcpp)
 
-```bash
-$ bash -c "$(curl -fsSL raw.github.com/phaneendra/dotfiles/master/bin/dotfiles)"
-```
+## Latest preview
+![Screenshot](./previews/desktop.png?raw=true "Latest")
 
-N.B. If you wish to fork this project and maintain your own dotfiles, you must
-substitute my username for your own in the above command and the 2 variables
-found at the top of the `bin/dotfiles` script.
+## Dependencies
+Here is a list of dependencies needed for making these themes work.
+If you install all of them you will have a (mostly) smooth out of the box experience.
+Of course, not all of them actually do something useful (see `fortune-mod` dependency).
+Also if you are willing to edit a few configuration files, **which you will have to do** at some point, most of these dependencies can be replaced. For example you can replace `i3lock` with your own command, `rofi` with `dmenu`, my `screenshot.sh` script with `scrot`.
 
-## How to update
+If you notice that something is missing, please open an issue so I can add the dependency to this table.
 
-You should run the update when:
+| Dependency                                                       | Description                                                                    | Why/Where is it needed?                                                |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| `i3-gaps`                                                        | Window manager                                                                 | (explains itself)                                                      |
+| `rofi`                                                           | Window switcher, application launcher and dmenu replacement                    | (explains itself)                                                      |
+| `xorg-xbacklight`                                                | Gets/Sets screen brightness (intel GPU only)                                   | brightness widget                                                      |
+| `lm_sensors`                                                     | CPU temperature sensor                                                         | CPU temperature widget                                                 |
+| `upower`                                                         | Abstraction for enumerating power devices, listening to device events and more | battery widget                                                         |
+| `pulseaudio`, `libpulse`                                         | Sound system **(You probably already have these)**                             | volume widget, [bin/volume-control.sh](./bin/volume-control.sh) script |
+| [bin/volume-control.sh](./bin/volume-control.sh) in your `$PATH` | Commands to control your volume                                                | volume buttons, volume widget                                          |
+| `jq`                                                             | Parses `json` output                                                           | weather widget                                                         |
+| `fortune-mod`                                                    | Displays random quotations (fortune cookies)                                   | fortune widget                                                         |
+| `mpd`                                                            | Server-side application for playing music                                      | **sidebar** music widget                                               |
+| `mpc`                                                            | Minimalist command line interface to MPD                                       | **sidebar** music widget                                               |
+| `i3lock`                                                         | Screen locker                                                                  | exit screen lock command                                               |
+| `maim`                                                           | Takes screenshots (improved `scrot`)                                           | [bin/screenshot.sh](./bin/screenshot.sh) script                        |
+| [bin/screenshot.sh](./bin/screenshot.sh) in your `$PATH`         | Commands to take/view screenshots                                              | screenshot button                                                      |
+| `feh`                                                            | Image viewer and wallpaper setter                                              | screenshot previews, wallpapers                                        |
+| *Typicons* font                                                  | Icon font                                                                      | text exit screen, text weather icons, *skyfall* bar                    |
+| Any *Nerd Font*                                                  | Icon font                                                                      | *manta* bar icons, *skyfall* taglist icons                             |
+| [openweathermap](https://openweathermap.org/) key                | Provides weather data                                                          | weather widgets                                                        |
 
-* You make a change to `~/dotfiles/git/gitconfig` (the only file that is
-  copied rather than symlinked).
-* You want to pull changes from the remote repository.
-* You want to update Homebrew formulae and Node packages.
+## Things to do after you set up dependencies
++ Backup your current `~/.config/i3` directory if you have one and copy this repo's `config/i3` directory in its place.
 
-Run the dotfiles command:
++ Configure default applications
 
-```bash
-$ dotfiles
-```
+   In `~/.config/i3/config` there is a section where default applications such as terminal, editor and file manager are defined.
+   You should change those to your liking.
 
-Options:
++ Configure autostart applications in `~/.config/i3/config`
 
-<table>
-    <tr>
-        <td><code>-h</code>, <code>--help</code></td>
-        <td>Help</td>
-    </tr>
-    <tr>
-        <td><code>-l</code>, <code>--list</code></td>
-        <td>List of additional applications to install</td>
-    </tr>
-    <tr>
-        <td><code>--no-packages</code></td>
-        <td>Suppress package updates</td>
-    </tr>
-    <tr>
-        <td><code>--no-sync</code></td>
-        <td>Suppress pulling from the remote repository</td>
-    </tr>
-</table>
++ *(Optional)* Load any `Xresources` colorscheme (`xrdb -merge <colorscheme file>`). In the [.xfiles](.xfiles) directory I provide you with a few of my own colorschemes, but you can also use your favorite one.
 
++ Have a general idea of what keybinds do
 
-## Features
+   My keybinds will most probably not suit you, but on your first login you might need to know how to navigate the desktop.
 
-### Automatic software installation
+   See the **Basic keybinds** section for more details.
 
-Homebrew formulae:
+**You are now ready to login with Manjaro I3**
 
-* GNU core utilities
-* [git](http://git-scm.com/)
-* [ack](http://betterthangrep.com/)
-* [bash-completion](http://bash-completion.alioth.debian.org/)
-* jpeg
-* [node](http://nodejs.org/)
-* [optipng](http://optipng.sourceforge.net/)
-* [phantomjs](http://phantomjs.org/)
-* [tree](http://mama.indstate.edu/users/ice/tree/)
-* [wget](http://www.gnu.org/software/wget/)
+## Some recommended applications
 
-Node packages:
++ **Terminals**: Termite / Kitty / urxvt / st
++ **File managers**: Nemo / Thunar
++ **Launchers**: Rofi / dmenu
++ **Browsers**: Firefox (with Vimium extension) / Qutebrowser
++ **Editors**: Vim / Sublime Text (with NeoVintageous plugin) / Spacemacs
++ **Music players**: mpd (with ncmpcpp)
 
-* [yo](http://yeoman.io/)
-* [bower](http://twitter.github.com/bower/)
-* [grunt-cli](http://gruntjs.com/)
-* [jshint](http://www.jshint.com/)
+### Eye-candy suggestions
+- [bin/bunnyfetch](./bin/bunnyfetch) script - Display some system info
+- `neofetch` - Display a ton of system info
+- [even-better-ls](https://github.com/illinoisjackson/even-better-ls) - Icons for the `ls` command
+- `cava` - Audio visualizer
 
+## Basic keybinds
 
-N.B. If your pre-existing Homebrew installation is not in `/usr/local` then you
-must prepend your custom installation's `bin` to the PATH in
-`.bash_profile.local`:
+I use `super` AKA Windows key as my main modifier.
 
-```bash
-# Add `brew` command's custom location to PATH
-PATH="/opt/acme/bin:$PATH"
-```
+#### Keyboard
++ `super + enter` - Spawn terminal
++ `super + shift + enter` - Spawn floating terminal
++ `super + d` - Launch rofi
++ `super + shift + q` - Close client
++ `super + control + space` - Toggle floating client
++ `super + [1-0]` - View tag AKA change workspace (for you i3 folks)
++ `super + shift + [1-0]` - Move focused client to tag
++ `super + s` - Tiling layout
++ `super + shift + s` - Floating layout
++ `super + w` - Maximized / Monocle layout
++ `super + [arrow keys]` - Change focus by direction
++ `super + j/k` - Cycle through clients
++ `super + h/l` - Add / remove clients to / from master area
++ `super + shift + [arrow keys] / [hjkl]` - Move client by direction. Move to edge if it is floating.
++ `super + control + [arrow keys] / [hjkl]` - Resize
++ `super + f` - Toggle fullscreen
++ `super + m` - Toggle maximize
++ `super + n` - Minimize
++ `super + shift + n` - Restore minimized
++ `super + c` - Center floating client
++ `super + u` - Jump to urgent client (or back to last tag if there is no such client)
++ `super + shift + b` - Toggle bar
++ `super + =` - Toggle tray
++ ... And many many more.
 
-### Custom OS X defaults
+## Tips / Notes
++ You can open an issue if you have any questions / problems.
+   
+   Do not forget to search through old issues first. They could already contain an answer to your question.
+   Also make sure you have the latest version of the repo. Little fixes happen all the time.
 
-Custom OS X settings can be applied during the `dotfiles` process. They can
-also be applied independently by running the following command:
++ If you are new to i3 or i3-gaps...
+   
+   I suggest you start from the default configuration and add pieces you like to it instead of trying to modify someone else's configuration even if you feel really comfortable with that specific config.
+   Otherwise you will have no idea how anything works and how you can modify things to your own liking. Trust me, I've been there.
 
-```bash
-$ osxdefaults
-```
-
-### Bootable backup-drive script
-
-These dotfiles include a script that will incrementally back up your data to an
-external, bootable clone of your computer's internal drive. First, make sure
-that the value of `DST` in the `bin/backup` script matches the name of your
-backup-drive. Then run the following command:
-
-```bash
-$ backup
-```
-
-For more information on how to setup your backup-drive, please read the
-preparatory steps in this post on creating a [Mac OS X bootable backup
-drive](http://nicolasgallagher.com/mac-osx-bootable-backup-drive-with-rsync/).
-
-### Custom bash prompt
-
-I use a custom bash prompt based on the Solarized color palette and influenced
-by @gf3's and @cowboy's custom prompts. For best results, you should install
-iTerm2 and import [Solarized
-Dark.itermcolors](https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized).
-
-When your current working directory is a Git repository, the prompt will
-display the checked-out branch's name (and failing that, the commit SHA that
-HEAD is pointing to). The state of the working tree is reflected in the
-following way:
-
-<table>
-    <tr>
-        <td><code>+</code></td>
-        <td>Uncommitted changes in the index</td>
-    </tr>
-    <tr>
-        <td><code>!</code></td>
-        <td>Unstaged changes</td>
-    </tr>
-    <tr>
-        <td><code>?</code></td>
-        <td>Untracked files</td>
-    </tr>
-    <tr>
-        <td><code>$</code></td>
-        <td>Stashed files</td>
-    </tr>
-</table>
-
-Further details are in the `bash_prompt` file.
-
-Screenshot:
-
-![](http://i.imgur.com/DSJ1G.png)
-
-### Local and private configurations
-
-Any special-case Vim directives local to a machine should be stored in a
-`.vimrc.local` file on that machine. The directives will then be automatically
-imported into your master `.vimrc`.
-
-Any private and custom commands should be stored in a `~/.bash_profile.local`
-file. Any commands included in this file will not be under version control or
-committed to a public repository. If `~/.bash_profile.local` exists, it will be
-sourced for inclusion in `bash_profile`.
-
-Here is an example `~/.bash_profile.local`:
-
-```bash
-# PATH exports
-PATH=$PATH:~/.gem/ruby/1.8/bin
-export PATH
-
-# Git credentials
-# Not under version control to prevent people from
-# accidentally committing with your details
-GIT_AUTHOR_NAME="Nicolas Gallagher"
-GIT_AUTHOR_EMAIL="nicolas@example.com"
-GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
-GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
-# Set the credentials (modifies ~/.gitconfig)
-git config --global user.name "$GIT_AUTHOR_NAME"
-git config --global user.email "$GIT_AUTHOR_EMAIL"
-```
-
-The `git/gitconfig` file is copied to `~/.gitconfig`, so any private git
-configuration specified in `~/.bash_profile.local` will not be committed to
-your dotfiles repository.
-
-
-## Acknowledgements
-
-Inspiration and code was taken from many sources, including:
-
-* [@mathiasbynens](https://github.com/mathiasbynens) (Mathias Bynens)
-  [https://github.com/mathiasbynens/dotfiles](https://github.com/mathiasbynens/dotfiles)
-* [@tejr](https://github.com/tejr) (Tom Ryder)
-  [https://github.com/tejr/dotfiles](https://github.com/tejr/dotfiles)
-* [@gf3](https://github.com/gf3) (Gianni Chiappetta)
-  [https://github.com/gf3/dotfiles](https://github.com/gf3/dotfiles)
-* [@cowboy](https://github.com/cowboy) (Ben Alman)
-  [https://github.com/cowboy/dotfiles](https://github.com/cowboy/dotfiles)
++ Don't forget to use the [API Documentation for I3]().
+   
+   It is well written and has plenty of examples.

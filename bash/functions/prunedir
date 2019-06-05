@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# prune a set of empty directories
-function prunedir () { 
-   find $* -type d -empty -print0 | xargs -0r rmdir -p ; 
-}
