@@ -1,0 +1,69 @@
+# -*-mode:conf-yaml-*- vim:ft=yaml
+
+# ~/.local/share/chezmoi/.chezmoiexternal.yaml
+# =============================================================================
+# Used to include archive from git repos into chezmoi state
+#
+# See https://www.chezmoi.io/docs/how-to/
+
+".bash-it":
+  type: archive
+  url: "https://github.com/Bash-it/bash-it/archive/master.tar.gz"
+  stripComponents: 1
+  exact: true
+
+".oh-my-zsh":
+  type: archive
+  url: "https://github.com/robbyrussell/oh-my-zsh/archive/master.tar.gz"
+  stripComponents: 1
+  # waiting for https://github.com/twpayne/chezmoi/issues/1614#issuecomment-966524408
+  # exact: true
+
+".oh-my-zsh/custom/themes/powerlevel9k":
+  type: archive
+  url: "https://github.com/Powerlevel9k/powerlevel9k/archive/master.tar.gz"
+  stripComponents: 1
+  exact: true
+
+".oh-my-zsh/custom/themes/powerlevel10k":
+  type: archive
+  url: "https://github.com/romkatv/powerlevel10k/archive/master.tar.gz"
+  stripComponents: 1
+  exact: true
+
+".oh-my-zsh/custom/plugins/zsh-syntax-highlighting":
+  type: archive
+  url: "https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz"
+  stripComponents: 1
+  exact: true
+
+".oh-my-zsh/custom/plugins/zsh-autosuggestions":
+  type: archive
+  url: "https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz"
+  stripComponents: 1
+  exact: true
+
+".oh-my-zsh/custom/plugins/zsh-completions":
+  type: archive
+  url: "https://github.com/zsh-users/zsh-completions/archive/master.tar.gz"
+  stripComponents: 1
+  exact: true
+
+".tmux":
+  type: archive
+  url: "https://github.com/gpakosz/.tmux/archive/master.tar.gz"
+  stripComponents: 1
+  # waiting for https://github.com/twpayne/chezmoi/issues/1614#issuecomment-966524408
+  # exact: true
+
+".tmux/plugins/tpm":
+  type: archive
+  url: "https://github.com/tmux-plugins/tpm/archive/master.tar.gz"
+  stripComponents: 1
+  exact: true
+
+".vim_runtime":
+  type: archive
+  url: "https://github.com/amix/vimrc/archive/master.tar.gz"
+  stripComponents: 1
+  exact: true

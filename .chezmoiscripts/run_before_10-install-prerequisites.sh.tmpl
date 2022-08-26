@@ -1,0 +1,73 @@
+#!/bin/bash
+# -*-mode:bash-*- vim:ft=shell-script
+
+# ~/10-install-prerequisites.sh
+# =============================================================================
+# Script to install prerequisites on Linux machines
+
+setup_color() {
+    # Only use colors if connected to a terminal
+    if [ -t 1 ]; then
+        RED=$(printf '\033[31m')
+        GREEN=$(printf '\033[32m')
+        # YELLOW=$(printf '\033[33m')
+        BLUE=$(printf '\033[34m')
+        BOLD=$(printf '\033[1m')
+        RESET=$(printf '\033[m')
+    else
+        RED=""
+        GREEN=""
+        # YELLOW=""
+        BLUE=""
+        BOLD=""
+        RESET=""
+    fi
+}
+
+main() {
+    # {{ if eq .chezmoi.os "linux" }}
+    readonly wanted_packages=(
+        build-essential
+        autoconf 
+        automake 
+        gdb 
+        git
+        libffi-dev
+        zlib1g-dev
+        libssl-dev
+        ca-certificates
+        software-properties-common
+        curl # used to find the latest version of github repositories
+        jq   # used on modify_ scripts like docker daemon.json
+        gpg  # used to decrypt the gpg keys of the apt repositories
+        gzip # used for zcat in .chezmoiexternal.yaml
+    )
+    missing_packages=()
+
+    for package in "${wanted_packages[@]}"; do
+        PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $package|grep "install ok installed")
+        if [ "" = "$PKG_OK" ]; then
+            missing_packages+=("${package}")
+        fi
+    done
+
+    if [[ ${#missing_packages[@]} -gt 0 ]]; then
+        
+        printf -- "\n%sInstalling packages with APT:%s %s\n" "$BLUE" "${missing_packages[*]}" "$RESET"
+
+        # {{    if eq .chezmoi.username "root" }}
+        apt_command=(apt)
+        # {{    else }}
+        apt_command=(sudo apt)
+        # {{    end }}
+
+        "${apt_command[@]}" update
+        "${apt_command[@]}" install --yes --no-install-recommends "${missing_packages[@]}"
+        
+    fi
+    # {{ else }}
+    printf -- "\n%sNon Linux OS Skiping %s\n" "$BLUE" "$RESET"
+    # {{ end }}
+}
+
+main "$@"

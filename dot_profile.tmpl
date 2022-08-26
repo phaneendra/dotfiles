@@ -1,0 +1,41 @@
+#!/bin/sh
+
+if [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
+  # shellcheck disable=SC2312
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+elif [ -x "${HOME}/.linuxbrew/bin/brew" ]; then
+  # shellcheck disable=SC2312
+  eval "$("${HOME}/.linuxbrew/bin/brew" shellenv)"
+fi
+
+if [ -d "${HOME}/.volta/bin" ]; then
+  export VOLTA_HOME="${HOME}/.volta"
+  export PATH="${VOLTA_HOME}/bin:${PATH}"
+fi
+
+if [ -d "${HOME}/.deno/bin" ]; then
+  export DENO_INSTALL="${HOME}/.deno"
+  export PATH="${DENO_INSTALL}/bin:${PATH}"
+fi
+
+if [ -r "${HOME}/.sdkman/bin/sdkman-init.sh" ]; then
+  export SDKMAN_DIR="${HOME}/.sdkman"
+  # shellcheck disable=SC1091
+  . "${HOME}/.sdkman/bin/sdkman-init.sh"
+fi
+
+if [ -d "${HOME}/.local/share/flutter/bin" ]; then
+  export PATH="${HOME}/.local/share/flutter/bin:${PATH}"
+fi
+
+# Set PATH so it includes user's private bins if they exist.
+if [ -d "${HOME}/bin" ]; then
+  export PATH="${HOME}/bin:${PATH}"
+fi
+
+if [ -d "${HOME}/.local/bin" ]; then
+  export PATH="${HOME}/.local/bin:${PATH}"
+fi
+
+export VISUAL="{{ .editor }}"
+export EDITOR="{{ .editor }}"
