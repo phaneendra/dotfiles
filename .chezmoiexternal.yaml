@@ -67,3 +67,9 @@
   url: "https://github.com/amix/vimrc/archive/master.tar.gz"
   stripComponents: 1
   exact: true
+
+".asdf":
+  type: archive
+  url: "https://github.com/asdf-vm/asdf/archive/refs/tags/v0.10.2.tar.gz"
+  stripComponents: 1
+  exact: true

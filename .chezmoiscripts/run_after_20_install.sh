@@ -65,6 +65,7 @@ setup_devtools() {
     }
 
     # Linking Oh My Tmux
+    printf -- "%sLinking Tmux configuration...%s\n" "$BLUE" "$RESET"
     [ -f "$HOME"/.tmux/.tmux.conf ] && ln -s -f -v .tmux/.tmux.conf "$HOME"
     
 
@@ -87,6 +88,10 @@ setup_devtools() {
     #     ) && \. "$ASDF_DIR/nvm.sh" && ([ -z "$BASH_VERSION" ] || \. "$ASDF_DIR/completions/asdf.bash")
     # fi
 
+    printf -- "%sSourcing ASDF...%s\n" "$BLUE" "$RESET"
+    export ASDF_DIR="$HOME/.asdf"
+    [ -s "$ASDF_DIR/asdf.sh" ] && \. "$ASDF_DIR/asdf.sh"
+
     printf -- "%sInstalling ASDF plugins...%s\n" "$BLUE" "$RESET"
     asdf plugin add golang && status=$? || status=$?
     asdf plugin add nodejs && status=$? || status=$?
@@ -105,9 +110,11 @@ setup_devtools() {
 
     printf -- "%sInstalling golang...%s\n" "$BLUE" "$RESET"
     asdf install golang latest
+    asdf global golang latest
 
     printf -- "%sInstalling nodejs...%s\n" "$BLUE" "$RESET"
     asdf install nodejs latest
+    asdf global nodejs latest
 
 }
 

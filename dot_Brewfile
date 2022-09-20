@@ -45,8 +45,8 @@ brew "jpegoptim"                            # JPEG compressor/optimizer
 
 brew "tidy-html5"                           # HTML corrector
 
-brew "asdf"                                 # Extendable version manager
 brew "helm"
 brew "kubectx"
 brew "hashicorp/tap/terraform"
+brew "hugo"
 brew "chezmoi"                              # Chezmoi dotfiles manager

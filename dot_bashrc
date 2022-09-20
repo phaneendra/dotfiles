@@ -9,6 +9,8 @@
 # shellcheck shell=bash
 # shellcheck source=/dev/null
 
+printf -- "\nExecuting bashrc\n"
+
 # If not running interactively, don't do anything.
 case $- in
     *i*) ;;
@@ -234,6 +236,14 @@ export BASH_IT_AUTOMATIC_RELOAD_AFTER_CONFIG_CHANGE=1
 [ -s "${BASH_IT}/bash_it.sh" ] && \. "${BASH_IT}/bash_it.sh"
 
 
+# Bash does not source .profile when .bash_profile is found so we do it here
+# https://stackoverflow.com/a/9954208/12156188
+if [[ -r "${HOME}/.profile" ]]; then
+  # shellcheck source=./dot_profile.tmpl
+  source "${HOME}/.profile"
+fi
+
+
 # Command-line shell completions
 # -----------------------------------------------------------------------------
 
@@ -298,14 +308,9 @@ fi
 
 # Enable ASDF Extendable version manager (https://asdf-vm.com).
 # This should replace all language-secific version managers.
-#ASDF_DIR="${ASDF_DIR:-$HOME/.asdf}"
-#if [[ ! -d $ASDF_DIR ]] && type brew &> /dev/null; then
-if command -v brew &> /dev/null; then
-    printf -- "\nSourcing ASDF\n"
-    ASDF_DIR="$(brew --prefix asdf)"
-    [ -s "$ASDF_DIR/libexec/asdf.sh" ] && \. "$ASDF_DIR/libexec/asdf.sh"
-fi
-
+export ASDF_DIR="$HOME/.asdf"
+printf -- "\nSourcing ASDF\n"
+[ -s "$ASDF_DIR/asdf.sh" ] && \. "$ASDF_DIR/asdf.sh"
 
 # Provide ASDF completions (already loaded if using Homebrew).
 [ -s "$ASDF_DIR/completions/asdf.bash" ] && \. "$ASDF_DIR/completions/asdf.bash"
@@ -339,24 +344,6 @@ fi
 
 # Provide Travis CI completions.
 [ -f "$HOME"/.travis/travis.sh ] && \. "$HOME"/.travis/travis.sh
-
-# Register Acquia Dev Desktop
-if [ -d "/Applications/DevDesktop" ]; then
-    export PATH="$PATH:/Applications/DevDesktop/tools"
-    export PATH="$PATH:/Applications/DevDesktop/drush_9"
-fi
-
-# Provide Terraform completions.
-if command -v terraform > /dev/null; then
-    printf -- "\nAdding terraform completions\n"
-    eval "$(terraform -install-autocomplete)"
-fi
-
-# Provide Drush completions.
-#[ -f ${HOME}/.drush/drush.bashrc ] && \. ${HOME}/.drush/drush.bashrc
-
-# Provide Drush prompt customizations.
-#[ -f ${HOME}/.drush/drush.prompt.sh ] && \. ${HOME}/.drush/drush.prompt.sh
 
 
 # Varia
@@ -393,6 +380,9 @@ fi
 if [ -d "/usr/local/sbin" ]; then
     export PATH="/usr/local/sbin:$PATH"
 fi
+
+# Rearraging PATH variables to pick local binaries first and then asdf / linuxbrew libraries
+export PATH="/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
 
 # Remove any duplicate paths.
 # See https://stackoverflow.com/questions/11650840/remove-redundant-paths-from-path-variable
