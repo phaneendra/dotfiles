@@ -17,7 +17,7 @@ Check out the [Quick Start](https://www.chezmoi.io/quick-start/) page.
 With a single command:
 
 ```sh
-sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply ngshiheng
+sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply phaneendra
 ```
 
 ### Update
