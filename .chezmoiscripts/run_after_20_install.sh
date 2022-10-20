@@ -69,25 +69,6 @@ setup_devtools() {
     [ -f "$HOME"/.tmux/.tmux.conf ] && ln -s -f -v .tmux/.tmux.conf "$HOME"
     
 
-    # Install ASDF Versionn Manager
-    # https://asdf-vm.com/
-    # if ! command -v brew > /dev/null; then
-    #     printf -- "%sInstalling/updating ASDF Extendable Version Manager...%s\n" "$BLUE" "$RESET"
-    #     export ASDF_DIR="${ASDF_DIR:-$HOME/.asdf}" && (
-    #         ASDF_NEW=false
-    #         if [ ! -d "$ASDF_DIR" ]; then
-    #             git clone https://github.com/asdf-vm/asdf.git "$NVM_DIR"
-    #             ASDF_NEW=true
-    #         fi
-    #         cd "$ASDF_DIR"
-    #         if [ $ASDF_NEW ]; then
-    #             git checkout "$(git describe --abbrev=0 --tags)"
-    #         else
-    #             asdf update
-    #         fi
-    #     ) && \. "$ASDF_DIR/nvm.sh" && ([ -z "$BASH_VERSION" ] || \. "$ASDF_DIR/completions/asdf.bash")
-    # fi
-
     printf -- "%sSourcing ASDF...%s\n" "$BLUE" "$RESET"
     export ASDF_DIR="$HOME/.asdf"
     [ -s "$ASDF_DIR/asdf.sh" ] && \. "$ASDF_DIR/asdf.sh"
@@ -98,6 +79,8 @@ setup_devtools() {
     asdf plugin add php && status=$? || status=$?
     asdf plugin add python && status=$? || status=$?
     asdf plugin add ruby && status=$? || status=$?
+    asdf plugin add java && status=$? || status=$?
+    asdf plugin add gradle && status=$? || status=$?
 
     printf -- "%sUpdating ASDF plugins...%s\n" "$BLUE" "$RESET"
     asdf plugin update --all
@@ -115,6 +98,21 @@ setup_devtools() {
     printf -- "%sInstalling nodejs...%s\n" "$BLUE" "$RESET"
     asdf install nodejs latest
     asdf global nodejs latest
+
+    printf -- "%sInstalling java...%s\n" "$BLUE" "$RESET"
+    asdf install java openjdk-11.0.2
+    asdf global java openjdk-11.0.2
+
+    printf -- "%sInstalling gradle...%s\n" "$BLUE" "$RESET"
+    asdf install gradle 7.4
+    asdf global gradle 7.4
+
+    if [ -f "$HOME/bin/Android/cmdline-tools/latest/bin/sdkmanager" ]; then
+        printf -- "%sInstalling Android Tools...%s\n" "$BLUE" "$RESET"
+        yes | "$HOME"/bin/Android/cmdline-tools/latest/bin/sdkmanager --licenses
+        "$HOME"/bin/Android/cmdline-tools/latest/bin/sdkmanager --install "platform-tools" "platforms;android-33" "build-tools;33.0.0"
+        "$HOME"/bin/Android/cmdline-tools/latest/bin/sdkmanager --update
+    fi
 
 }
 

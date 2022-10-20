@@ -37,6 +37,7 @@ brew "wget"                                 # Web content downloader
 brew "zlib"                                 # Lossless data-compression library
 brew "rich"
 brew "ydiff"
+brew "watchman"
 
 #brew "graphicsmagick"                      # GraphicsMagick image processor
 #brew "imagemagick"                         # ImageMagick image processor

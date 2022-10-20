@@ -195,7 +195,7 @@ export BASH_IT="${HOME}/.bash-it"
 # Leave empty to disable theming.
 # location /.bash_it/themes/
 if [ "$color_prompt" = yes ]; then
-    export BASH_IT_THEME='agnoster'
+    export BASH_IT_THEME='powerline-multiline'
 fi
 unset color_prompt
 
@@ -314,6 +314,19 @@ printf -- "\nSourcing ASDF\n"
 
 # Provide ASDF completions (already loaded if using Homebrew).
 [ -s "$ASDF_DIR/completions/asdf.bash" ] && \. "$ASDF_DIR/completions/asdf.bash"
+
+# Enable Java Home.
+[ -s "$ASDF_DIR/plugins/java/set-java-home.bash" ] && \. "$ASDF_DIR/plugins/java/set-java-home.bash"
+
+# Enable Android Home.
+if [ -f "$HOME/bin/Android/cmdline-tools/latest/bin/sdkmanager" ]; then
+    export ANDROID_HOME="$HOME/bin/Android/cmdline-tools/latest"
+    export ANDROID_SDK_ROOT="$HOME/bin/Android"
+    export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
+    export ADB_SERVER_SOCKET=tcp:$WSL_HOST:5037
+    PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
+    PATH="$ANDROID_HOME/bin:$PATH"
+fi
 
 # Enable Node Version Manager.
 export NVM_DIR="$HOME/.nvm"
