@@ -9,7 +9,7 @@
 tap "buo/cask-upgrade"
 tap "homebrew/bundle"
 tap "homebrew/cask"
-tap "homebrew/core"
+# tap "homebrew/core"
 tap "homebrew/services"
 tap "hashicorp/tap"
 
@@ -50,4 +50,4 @@ brew "helm"
 brew "kubectx"
 brew "hashicorp/tap/terraform"
 brew "hugo"
-brew "chezmoi"                              # Chezmoi dotfiles manager
+# brew "chezmoi"                              # Chezmoi dotfiles manager

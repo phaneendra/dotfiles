@@ -319,13 +319,11 @@ printf -- "\nSourcing ASDF\n"
 [ -s "$ASDF_DIR/plugins/java/set-java-home.bash" ] && \. "$ASDF_DIR/plugins/java/set-java-home.bash"
 
 # Enable Android Home.
-if [ -f "$HOME/bin/Android/cmdline-tools/latest/bin/sdkmanager" ]; then
-    export ANDROID_HOME="$HOME/bin/Android/cmdline-tools/latest"
-    export ANDROID_SDK_ROOT="$HOME/bin/Android"
-    export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
-    export ADB_SERVER_SOCKET=tcp:$WSL_HOST:5037
-    PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
-    PATH="$ANDROID_HOME/bin:$PATH"
+if [ -f "$HOME/Android" ]; then
+    export ANDROID_HOME="$HOME/Android/Sdk"
+    export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
+    PATH="$ANDROID_HOME/platform-tools:$PATH"
+    PATH="$ANDROID_HOME/emulator:$PATH"
 fi
 
 # Enable Node Version Manager.

@@ -27,11 +27,13 @@ setup_color() {
 main() {
     # {{ if eq .chezmoi.os "linux" }}
     readonly wanted_packages=(
-        build-essential
+        build-essential 
+        apt-transport-https 
         autoconf 
         automake 
+        apache2-utils 
         gdb 
-        git
+        git 
         libffi-dev
         zlib1g-dev
         libssl-dev

@@ -360,6 +360,9 @@ else
     alias st='sublime_text'
 fi
 
+# Opens vscodium
+# TODO: make it work for wsl
+# alias codium="flatpak run com.vscodium.codium "
 
 # Development
 # -----------------------------------------------------------------------------
