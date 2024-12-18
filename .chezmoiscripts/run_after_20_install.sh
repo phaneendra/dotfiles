@@ -100,12 +100,12 @@ setup_devtools() {
     asdf global nodejs latest
 
     printf -- "%sInstalling java...%s\n" "$BLUE" "$RESET"
-    asdf install java openjdk-11.0.2
-    asdf global java openjdk-11.0.2
+    asdf install java latest:openjdk
+    asdf global java latest:openjdk
 
     printf -- "%sInstalling gradle...%s\n" "$BLUE" "$RESET"
-    asdf install gradle 7.4
-    asdf global gradle 7.4
+    asdf install gradle latest
+    asdf global gradle latest
 
     if [ -f "$HOME/bin/Android/cmdline-tools/latest/bin/sdkmanager" ]; then
         printf -- "%sInstalling Android Tools...%s\n" "$BLUE" "$RESET"
