@@ -27,11 +27,22 @@ elif [ "$OS" = "Linux" ]; then
 fi
 
 # 2. Install mise
-if ! command -v mise &>/dev/null; then
+
+MISE_BIN="$HOME/.local/bin/mise"
+MISE_ALT_BIN="$HOME/.local/share/mise/bin/mise"
+
+if [ -f "$MISE_BIN" ]; then
+    MISE_EXEC="$MISE_BIN"
+elif [ -f "$MISE_ALT_BIN" ]; then
+    MISE_EXEC="$MISE_ALT_BIN"
+elif command -v mise &>/dev/null; then
+    MISE_EXEC="mise"
+else
     echo "Installing mise..."
     curl https://mise.run | sh
-    export PATH="$HOME/.local/share/mise/bin:$HOME/.local/bin:$PATH"
+    MISE_EXEC="$HOME/.local/bin/mise"
 fi
+
 
 # 3. Pre-seed global mise config from GitHub so mise knows what to bootstrap
 echo "Downloading global mise configuration..."
@@ -42,15 +53,15 @@ curl -fsSL -H "Cache-Control: no-cache" \
 
 # Force mise to purge stale cached configs from memory
 echo "Clearing mise config cache..."
-mise cache clear
+"$MISE_EXEC" cache clear
 
 # 4. Native mise declarative bootstrap execution
 # This clones repos from [bootstrap.repos], applies [dotfiles], and installs [tools]
-mise bootstrap -y
+"$MISE_EXEC" bootstrap -y
 
 # 5. Force-link dotfiles (Overwrites default OS configs with your dotfiles)
 echo "Force-linking dotfiles..."
-mise dotfiles link --force
+"$MISE_EXEC" dotfiles link --force
 
 # 6. Optional: Set Zsh as default shell if not already set
 if [ "$SHELL" != "$(which zsh)" ]; then
@@ -59,6 +70,6 @@ if [ "$SHELL" != "$(which zsh)" ]; then
 fi
 
 # 7. Refresh font cache for Linux
-mise run install-fonts-linux
+"$MISE_EXEC" run install-fonts-linux
 
 echo "✅ Setup complete! Restart your terminal."
