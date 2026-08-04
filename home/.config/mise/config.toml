@@ -98,7 +98,7 @@ dotfiles.default_mode = "symlink"
 
 [dotfiles]
 # Target in $HOME = Source inside $settings.dotfiles.root
-"~" = { source = "dotfiles/home", mode = "symlink-each" }
+"~" = { source = "~/dotfiles/home", mode = "symlink-each" }
 
 [tasks.install-fonts-linux]
 description = "Fallback font installer & font cache refresh for Linux"
