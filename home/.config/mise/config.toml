@@ -86,7 +86,7 @@ dotfiles.default_mode = "symlink"
 
 [bootstrap.repos]
 # 1. Main Dotfiles Repository
-"~/dotfiles" = { url = "https://github.com/phaneendra/dotfiles.git", ref = "main" }
+"~/dotfiles" = { url = "https://github.com/phaneendra/dotfiles.git", ref = "master" }
 
 # 2. Oh My Zsh Framework
 "~/.oh-my-zsh" = { url = "https://github.com/ohmyzsh/ohmyzsh.git", ref = "master" }
