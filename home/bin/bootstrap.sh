@@ -32,7 +32,7 @@ fi
 
 # 3. Native mise declarative bootstrap execution
 # This clones repos from [bootstrap.repos], applies [dotfiles], and installs [tools]
-mise bootstrap -f -y
+mise bootstrap -y
 
 # 4. Optional: Set Zsh as default shell if not already set
 if [ "$SHELL" != "$(which zsh)" ]; then
