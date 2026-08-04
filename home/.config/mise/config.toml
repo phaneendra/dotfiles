@@ -98,7 +98,7 @@ dotfiles.default_mode = "symlink"
 
 [dotfiles]
 # Target in $HOME = Source inside $settings.dotfiles.root
-"~/*" = "home/*"
+"~" = "home"
 "~/.config/*" = "home/.config/*"
 
 [tasks.install-fonts-linux]
