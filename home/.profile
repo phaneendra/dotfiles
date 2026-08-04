@@ -39,5 +39,6 @@ if [ -d "${HOME}/.local/bin" ]; then
   export PATH="${HOME}/.local/bin:${PATH}"
 fi
 
-export VISUAL="{{ .editor }}"
-export EDITOR="{{ .editor }}"
+# This is now set by mise via ENV vars
+# export VISUAL="{{ .editor }}"
+# export EDITOR="{{ .editor }}"

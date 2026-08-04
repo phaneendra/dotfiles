@@ -29,9 +29,7 @@ export ZSH="${HOME}/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
-ZSH_THEME="powerlevel9k/powerlevel9k"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME=""
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -86,42 +84,30 @@ HIST_STAMPS="yyyy-mm-dd"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    # asdf                    # Integrates with ASDF extendable version manager
-    colored-man-pages       # Adds colors to man pages
-    common-aliases          # Aliases for many commonly used commands
-    cp                      # Secure `cpv` function that uses `rsync`
-    docker                  # Aliases for [Docker](https://www.docker.com/)
-    docker-compose          # Aliases for [Docker-Compose](https://docs.docker.com/compose/)
-    dotenv                  # Load project ENV variables from folder `.env` files
-    extract                 # Multi-format decompression function `x`
-    history                 # Aliases for `history` command
-    pj                      # Project Jump folder shortcuts
-    rsync                   # Aliases for `rsync` command
-    sublime                 # Aliases for [Sublime Text](https://www.sublimetext.com/)
-    systemadmin             # Utilities for SysAdmins.
-    z                       # Tracks your most used directories.
-    zsh-autosuggestions     # Command suggestions based on history and completions (https://github.com/zsh-users/zsh-autosuggestions)
-    zsh-syntax-highlighting # Fish shell like syntax highlighting (https://github.com/zsh-users/zsh-syntax-highlighting)
+  git
+  docker                  # Aliases for [Docker](https://www.docker.com/)
+  docker-compose          # Aliases for [Docker-Compose](https://docs.docker.com/compose/)
+  dotenv                  # Load project ENV variables from folder `.env` files
+  rsync                   # Aliases for `rsync` command
+  zsh-autocomplete        # Autocompletion for Zsh (https://github.com/zsh-users/zsh-autocomplete)
+  zsh-autosuggestions     # Command suggestions based on history and completions (https://github.com/zsh-users/zsh-autosuggestions)
+  zsh-syntax-highlighting # Fish shell like syntax highlighting (https://github.com/zsh-users/zsh-syntax-highlighting)
 )
-#    composer                # Aliases for [Composer](https://getcomposer.org/)
-#    symfony2                # Completion for [Symfony 2](https://symfony.com/)
+
 if [[ "$OSTYPE" =~ ^darwin ]]; then
     plugins+=(
         osx                 # Utilities for macOS
     )
 fi
-# (debian, dnf, fedora, ubuntu)
 
-# Load theme Powerlevel10K
-if test "${ZSH_THEME#*powerlevel10k}" != "$ZSH_THEME"; then
-    [ -f "$HOME"/.p10k.zsh ] && \. "$HOME"/.p10k.zsh
-fi
 
 # Load Oh My Zsh
 . "$ZSH"/oh-my-zsh.sh
@@ -132,8 +118,17 @@ if [ -d /usr/local/man ]; then
     export MANPATH="/usr/local/man:$MANPATH"
 fi
 
+# ---------- Pager ----------
+if command -v bat >/dev/null 2>&1; then
+  export MANPAGER="bat -l man -p"
+elif command -v batcat >/dev/null 2>&1; then
+  export MANPAGER="batcat -l man -p"
+fi
+
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
+
+
 
 # Set preferred editor for local and remote sessions.
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -166,63 +161,6 @@ if type brew &> /dev/null; then
     FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
-# Provide Chezmoi completions (if installed).
-# See https://github.com/twpayne/chezmoi/blob/master/docs/REFERENCE.md
-if command -v chezmoi > /dev/null; then
-    eval "$(chezmoi completion zsh)"
-fi
-
-
-# Development environments
-# -----------------------------------------------------------------------------
-
-# Enable ASDF Extendable version manager (https://asdf-vm.com).
-# This should replace all language-secific version managers.
-ASDF_DIR="${ASDF_DIR:-$HOME/.asdf}"
-if [[ ! -d $ASDF_DIR ]] && type brew &> /dev/null; then
-    ASDF_DIR="$(brew --prefix asdf)"
-fi
-[ -s "$ASDF_DIR/asdf.sh" ] && \. "$ASDF_DIR/asdf.sh"
-
-# Provide ASDF completions (already loaded if using Homebrew).
-if [ -s "$ASDF_DIR/completions" ]; then
-    fpath=(${ASDF_DIR}/completions $fpath)
-    # initialise completions with ZSH's compinit
-    autoload -Uz compinit
-    compinit
-fi
-
-# Enable Node Version Manager.
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-# Provide Node completions.
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-# Enable Python version management.
-if command -v pyenv > /dev/null; then
-    eval "$(pyenv init -)"
-fi
-
-# Load Ruby version management.
-if command -v rbenv > /dev/null; then
-    eval "$(rbenv init -)"
-fi
-
-# Add Ruby gems to PATH.
-if command -v ruby > /dev/null && command -v gem > /dev/null; then
-    PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
-fi
-
-# Provide Travis CI completions.
-[ -f "$HOME"/.travis/travis.sh ] && \. "$HOME"/.travis/travis.sh
-
-# Load Terraform autocompletions
-if command -v terraform > /dev/null; then
-    eval "$(terraform -install-autocomplete)"
-fi
-
-
 # Varia
 # -----------------------------------------------------------------------------
 
@@ -253,3 +191,9 @@ fi
 if [ -f "$HOME"/.profile ]; then
     \. "$HOME"/.profile
 fi
+
+# Activate mise inside Zsh
+eval "$(~/.local/bin/mise activate zsh)"
+
+# Load Starship prompt this should be the last line
+eval "$(starship init zsh)"

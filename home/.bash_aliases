@@ -39,15 +39,19 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 # Colorizes listings.
-if ls --color &> /dev/null; then
-    # GNU `ls`
-    colorflag='--color=auto'
-    export LS_COLORS='no=00:fi=00:di=01;31:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
-else
-    # macOS `ls`
-    colorflag='-G'
-    export LSCOLORS='BxBxhxDxfxhxhxhxhxcxcx'
-fi
+# if ls --color &> /dev/null; then
+#     # GNU `ls`
+#     colorflag='--color=auto'
+#     export LS_COLORS='no=00:fi=00:di=01;31:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
+# else
+#     # macOS `ls`
+#     colorflag='-G'
+#     export LSCOLORS='BxBxhxDxfxhxhxhxhxcxcx'
+# fi
+
+# Uses human sizes, classifications, and color output for `ls`.
+# alias ls='command ls -Fh ${colorflag}'
+
 if type 'dir' &> /dev/null; then
     alias dir='dir --color=auto'
 fi
@@ -55,8 +59,7 @@ if type 'vdir' &> /dev/null; then
     alias vdir='vdir --color=auto'
 fi
 
-# Uses human sizes, classifications, and color output for `ls`.
-alias ls='command ls -Fh ${colorflag}'
+
 
 # Creates parent directories on demand.
 alias mkdir='mkdir -pv'
@@ -113,17 +116,29 @@ alias .5='cd ../../../../..'
 # Directory browsing
 # -----------------------------------------------------------------------------
 
-# Lists visible files in long format.
-alias l='ls -l'
+# Standard `ls` aliases using `eza`.
+alias ls='eza --icons --group-directories-first'
 
-# Lists all files in long format, excluding `.` and `..`.
-alias ll='ls -lA'
+# Long format detailed listing, including Git status and headers.
+alias ll='eza -la --icons --git --header --group-directories-first'
+
+# Tree view of directories, with two levels and icons.
+alias lt='eza --tree --level=2 --icons'
+
+# Modified time sorted listing, showing most recent first.
+alias lm='eza -l --sort=modified --reverse --icons'
+
+# Detailed listing including hidden files
+alias la='eza -lah --icons --git --header --group-directories-first'
 
 # Lists directories only, in long format.
 alias lsd='ls -l | grep --color=never "^d"'
 
 # Lists hidden files in long format.
 alias lsh='ls -dlA .?*'
+
+# Reuse ls completions for eza (avoids defining a separate completion function)
+compdef eza=ls
 
 
 # File management
@@ -133,7 +148,7 @@ alias lsh='ls -dlA .?*'
 alias cpv='rsync -ah --info=progress2'
 
 # Finds directories.
-alias fd='find . -type d -name'
+# alias fd='find . -type d -name'
 
 # Finds files.
 alias ff='find . -type f -name'

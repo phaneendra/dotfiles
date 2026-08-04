@@ -295,28 +295,9 @@ if type brew &> /dev/null; then
     unset HOMEBREW_PREFIX COMPLETION
 fi
 
-# Provide Chezmoi completions (if installed).
-# See https://github.com/twpayne/chezmoi/blob/master/docs/REFERENCE.md
-if command -v chezmoi > /dev/null; then
-    printf -- "\nAdding chezmoi completions\n"
-    eval "$(chezmoi completion bash)"
-fi
-
 
 # Development environments
 # -----------------------------------------------------------------------------
-
-# Enable ASDF Extendable version manager (https://asdf-vm.com).
-# This should replace all language-secific version managers.
-export ASDF_DIR="$HOME/.asdf"
-printf -- "\nSourcing ASDF\n"
-[ -s "$ASDF_DIR/asdf.sh" ] && \. "$ASDF_DIR/asdf.sh"
-
-# Provide ASDF completions (already loaded if using Homebrew).
-[ -s "$ASDF_DIR/completions/asdf.bash" ] && \. "$ASDF_DIR/completions/asdf.bash"
-
-# Enable Java Home.
-[ -s "$ASDF_DIR/plugins/java/set-java-home.bash" ] && \. "$ASDF_DIR/plugins/java/set-java-home.bash"
 
 # Enable Android Home.
 if [ -d "$HOME/Android" ]; then
@@ -326,37 +307,6 @@ if [ -d "$HOME/Android" ]; then
     PATH="$ANDROID_HOME/platform-tools:$PATH"
     PATH="$ANDROID_HOME/emulator:$PATH"
 fi
-
-# Enable Node Version Manager.
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-# Provide Node completions.
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-# Enable Python version management.
-if command -v pyenv > /dev/null; then
-    eval "$(pyenv init -)"
-fi
-
-# Provide Python completions.
-if command -v pipenv > /dev/null; then
-    eval "$(pipenv --completion)"
-fi
-
-# Load Ruby version management.
-if command -v rbenv > /dev/null; then
-   eval "$(rbenv init -)"
-fi
-
-# Add Ruby gems to PATH.
-if command -v ruby > /dev/null && command -v gem > /dev/null; then
-   PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
-fi
-
-# Provide Travis CI completions.
-[ -f "$HOME"/.travis/travis.sh ] && \. "$HOME"/.travis/travis.sh
-
 
 # Varia
 # -----------------------------------------------------------------------------
