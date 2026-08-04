@@ -44,13 +44,17 @@ curl -fsSL -H "Cache-Control: no-cache" \
 # This clones repos from [bootstrap.repos], applies [dotfiles], and installs [tools]
 mise bootstrap -y
 
-# 5. Optional: Set Zsh as default shell if not already set
+# 5. Force-link dotfiles (Overwrites default OS configs with your dotfiles)
+echo "Force-linking dotfiles..."
+mise dotfiles link --force
+
+# 6. Optional: Set Zsh as default shell if not already set
 if [ "$SHELL" != "$(which zsh)" ]; then
     echo "Changing default shell to Zsh..."
     chsh -s "$(which zsh)"
 fi
 
-# 6. Refresh font cache for Linux
+# 7. Refresh font cache for Linux
 mise run install-fonts-linux
 
 echo "✅ Setup complete! Restart your terminal."
