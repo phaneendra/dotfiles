@@ -82,6 +82,7 @@ VISUAL = "hx"
 
 [settings]
 dotfiles.root = "~/dotfiles"
+dotfiles.overwrite = true
 
 [bootstrap.repos]
 # 1. Main Dotfiles Repository
@@ -91,6 +92,7 @@ dotfiles.root = "~/dotfiles"
 "~/.oh-my-zsh" = { url = "https://github.com/ohmyzsh/ohmyzsh.git", ref = "master" }
 
 # 3. Oh My Zsh Plugins
+"~/.oh-my-zsh/custom/plugins/fzf-tab" = { url = "https://github.com/Aloxaf/fzf-tab.git", ref = "master" }
 "~/.oh-my-zsh/custom/plugins/zsh-autosuggestions" = { url = "https://github.com/zsh-users/zsh-autosuggestions.git", ref = "master" }
 "~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" = { url = "https://github.com/zsh-users/zsh-syntax-highlighting.git", ref = "master" }
 

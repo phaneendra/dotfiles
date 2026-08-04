@@ -12,25 +12,31 @@ Managed with [mise](https://mise.jdx.dev/), a great dotfiles manager.
 
 Check out the [Quick Start](https://mise.jdx.dev/walkthrough.html) page.
 
-### Install mise and the dotfiles and recommended tools on any new machine
+## Install mise and the dotfiles and recommended tools on any new machine
 
-With a single command:
+### 1. Download the script
 
-```sh
-./home/bin/bootstrap.sh
-```
+`curl -fsSL https://raw.githubusercontent.com/phaneendra/dotfiles/main/bin/bootstrap.sh -o bootstrap.sh`
+
+### 2. Make it executable
+
+`chmod +x bootstrap.sh`
+
+### 3. Execute
+
+`./bootstrap.sh`
 
 - `[bootstrap.repos]` Execution:
-  mise clones repository from GitHub into `~/dotfiles` (which resolves to /home/user/dotfiles).
+  Mise clones repository from GitHub into `~/dotfiles` (which resolves to /home/user/dotfiles).
 
 - `[dotfiles]` Execution:
-  mise looks inside $settings.dotfiles.root (/home/user/dotfiles).
-  Because of config "~~/_" = "home/_", it finds every file and directory directly inside /home/user/dotfiles/home/ and creates symbolic links (symlinks) to them in /home/user/.
-  Because of config "~~/.config/_" = "home/.config/_", it finds every file and directory directly inside /home/user/dotfiles/home/.config/ and creates symbolic links to them in /home/user/.config/.
+  Mise looks inside `$settings.dotfiles.root` which resolves to `/home/user/dotfiles`.
+  Because of config `"~/*" = "home/*"`, it finds every file and directory directly inside `/home/user/dotfiles/home/` and creates symbolic links (symlinks) to them in `/home/user/`.
+  Because of config `"~/.config/*" = "home/.config/*"`, it finds every file and directory directly inside `/home/user/dotfiles/home/.config/` and creates symbolic links to them in `/home/user/.config/`.
 
-- installs missing [tools].
+- `[tools]` Execution : installs missing tools.
 
-### Update
+## Update
 
 On any machine, you can pull and apply the latest changes from your repo with:
 
@@ -38,7 +44,7 @@ On any machine, you can pull and apply the latest changes from your repo with:
 mise bootstrap -f -y
 ```
 
-### Add a package
+## Add a package
 
 ```sh
 mise bootstrap packages use apk:zlib-dev apt:libssl-dev
@@ -46,7 +52,7 @@ mise bootstrap packages use apk:zlib-dev apt:libssl-dev
 
 This writes `[bootstrap.packages]` and installs what is missing.
 
-### Capture an edited dotfile
+## Capture an edited dotfile
 
 ```sh
 $EDITOR ~/.zshrc
@@ -55,7 +61,7 @@ mise bootstrap dotfiles add ~/.zshrc
 
 `mise bootstrap dotfiles add` stores the live file under `dotfiles.root` and writes an explicit `[dotfiles]` entry with mode.
 
-### Edit a managed dotfile
+## Edit a managed dotfile
 
 ```sh
 mise bootstrap dotfiles edit ~/.zshrc
