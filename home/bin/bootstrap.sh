@@ -40,6 +40,10 @@ curl -fsSL -H "Cache-Control: no-cache" \
     https://raw.githubusercontent.com/phaneendra/dotfiles/master/home/.config/mise/config.toml \
     -o "$HOME/.config/mise/config.toml"
 
+# Force mise to purge stale cached configs from memory
+echo "Clearing mise config cache..."
+mise cache clear
+
 # 4. Native mise declarative bootstrap execution
 # This clones repos from [bootstrap.repos], applies [dotfiles], and installs [tools]
 mise bootstrap -y
