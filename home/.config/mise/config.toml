@@ -82,7 +82,7 @@ VISUAL = "hx"
 
 [settings]
 dotfiles.root = "~/dotfiles"
-dotfiles.overwrite = true
+dotfiles.default_mode = "symlink"
 
 [bootstrap.repos]
 # 1. Main Dotfiles Repository
