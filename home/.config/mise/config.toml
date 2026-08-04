@@ -23,7 +23,6 @@ bat = "latest"
 jq = "latest"
 # curl = "latest"
 # git = "latest"
-gpg = "latest"                        # Replaces apt:gpg / gnutls
 unzip = "latest"                      # Replaces apt:unzip (portable binary)
 gzip = "latest"                       # Replaces apt:gzip (portable binary)
 "github:cli/cli" = "latest"           # This provides the 'gh' binary
@@ -61,6 +60,9 @@ screenfetch = "latest"
 
 # --- Linux System Packages & Build Tools (apt backend) ---
 "apt:build-essential"          = "latest"
+"apt:autoconf"                 = "latest"
+"apt:automake"                 = "latest"
+"apt:gpg"                      = "latest"
 "apt:fontconfig"               = "latest"
 "apt:gdb"                      = "latest"
 "apt:apache2-utils"            = "latest"
