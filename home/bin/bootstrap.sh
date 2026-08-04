@@ -57,19 +57,15 @@ echo "Clearing mise config cache..."
 
 # 4. Native mise declarative bootstrap execution
 # This clones repos from [bootstrap.repos], applies [dotfiles], and installs [tools]
-"$MISE_EXEC" bootstrap -y
+"$MISE_EXEC" bootstrap -y --force-dotfiles
 
-# 5. Force-link dotfiles (Overwrites default OS configs with your dotfiles)
-echo "Force-linking dotfiles..."
-"$MISE_EXEC" dotfiles link --force
-
-# 6. Optional: Set Zsh as default shell if not already set
+# 5. Optional: Set Zsh as default shell if not already set
 if [ "$SHELL" != "$(which zsh)" ]; then
     echo "Changing default shell to Zsh..."
     chsh -s "$(which zsh)"
 fi
 
-# 7. Refresh font cache for Linux
+# 6. Refresh font cache for Linux
 "$MISE_EXEC" run install-fonts-linux
 
 echo "✅ Setup complete! Restart your terminal."
