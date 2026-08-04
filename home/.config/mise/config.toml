@@ -8,8 +8,6 @@ direnv = "latest"
 cmake = "latest"    # Cross-platform build generator
 ninja = "latest"    # Fast build tool
 make = "latest"     # GNU Make
-autoconf = "latest" # Portable autoconf managed directly by mise
-automake = "latest" # Almost always used alongside autoconf
 
 # --- Runtimes ---
 node = "lts"
