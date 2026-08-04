@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
-echo "🚀 Starting machine bootstrap..."
+# Always switch context to $HOME
+cd "$HOME"
+
+echo "🚀 Starting machine bootstrap in $PWD..."
 
 # 1. Install system essentials based on OS
 OS="$(uname -s)"
@@ -30,17 +33,24 @@ if ! command -v mise &>/dev/null; then
     export PATH="$HOME/.local/share/mise/bin:$HOME/.local/bin:$PATH"
 fi
 
-# 3. Native mise declarative bootstrap execution
+# 3. Pre-seed global mise config from GitHub so mise knows what to bootstrap
+echo "Downloading global mise configuration..."
+mkdir -p "$HOME/.config/mise"
+curl -fsSL -H "Cache-Control: no-cache" \
+    https://raw.githubusercontent.com/phaneendra/dotfiles/master/home/.config/mise/config.toml \
+    -o "$HOME/.config/mise/config.toml"
+
+# 4. Native mise declarative bootstrap execution
 # This clones repos from [bootstrap.repos], applies [dotfiles], and installs [tools]
 mise bootstrap -y
 
-# 4. Optional: Set Zsh as default shell if not already set
+# 5. Optional: Set Zsh as default shell if not already set
 if [ "$SHELL" != "$(which zsh)" ]; then
     echo "Changing default shell to Zsh..."
     chsh -s "$(which zsh)"
 fi
 
-# 5. Refresh font cache for Linux
+# 6. Refresh font cache for Linux
 mise run install-fonts-linux
 
 echo "✅ Setup complete! Restart your terminal."

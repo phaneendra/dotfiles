@@ -16,7 +16,7 @@ Check out the [Quick Start](https://mise.jdx.dev/walkthrough.html) page.
 
 ### 1. Download the script
 
-`curl -fsSL https://raw.githubusercontent.com/phaneendra/dotfiles/refs/heads/master/home/bin/bootstrap.sh -o bootstrap.sh`
+`curl -fsSL -H "Cache-Control: no-cache" https://raw.githubusercontent.com/phaneendra/dotfiles/refs/heads/master/home/bin/bootstrap.sh -o bootstrap.sh`
 
 ### 2. Make it executable
 
