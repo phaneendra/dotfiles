@@ -12,14 +12,14 @@ echo "🚀 Starting machine bootstrap in $PWD..."
 # 1. Install system essentials based on OS
 OS="$(uname -s)"
 if [ "$OS" = "Darwin" ]; then
-    echo "Detected macOS..."
+    echo "💻 Detected macOS..."
     if ! command -v brew &>/dev/null; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
     # Install build essential tools if needed
     brew install gcc git curl zsh
 elif [ "$OS" = "Linux" ]; then
-    echo "Detected Linux..."
+    echo "🖥️ Detected Linux..."
     if command -v apt-get &>/dev/null; then
         sudo apt-get update && sudo apt-get install -y build-essential curl git zsh
     elif command -v dnf &>/dev/null; then
@@ -41,7 +41,7 @@ elif [ -f "$MISE_ALT_BIN" ]; then
 elif command -v mise &>/dev/null; then
     MISE_EXEC="mise"
 else
-    echo "Installing mise..."
+    echo " 🔧 Installing mise..."
     curl https://mise.run | sh
     MISE_EXEC="$HOME/.local/bin/mise"
 fi
@@ -52,12 +52,12 @@ case "$OS" in
     Linux*)  CONFIG_FILE="config.linux.toml" ;;
     Darwin*) CONFIG_FILE="config.macos.toml" ;;
     *)
-        echo "Error: Unsupported OS '$OS'" >&2
+        echo " 🔴 Error: Unsupported OS '$OS'" >&2
         exit 1
         ;;
 esac
 
-echo "Downloading global mise configuration ($CONFIG_FILE)..."
+echo " 🔧 Downloading global mise configuration ($CONFIG_FILE)..."
 mkdir -p "$HOME/.config/mise"
 curl -fsSL -H "Cache-Control: no-cache" \
     https://raw.githubusercontent.com/phaneendra/dotfiles/master/home/.config/mise/$CONFIG_FILE \
@@ -70,15 +70,19 @@ else
     export MISE_ENV="linux"
 fi
 
-# Clean up dirty local state in ~/dotfiles if it exists
+# Ensure ~/dotfiles exists as a git repo and force-sync with remote
 if [ -d "$HOME/dotfiles/.git" ]; then
-    echo "🧹 Cleaning untracked changes in ~/dotfiles..."
-    git -C "$HOME/dotfiles" reset --hard HEAD
+    echo " 🔄 Force-syncing ~/dotfiles with remote repository..."
+    git -C "$HOME/dotfiles" fetch origin
+
+    # Get default branch (master or main) and hard-reset local to match origin
+    DEFAULT_BRANCH=$(git -C "$HOME/dotfiles" symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+    git -C "$HOME/dotfiles" reset --hard "origin/$DEFAULT_BRANCH"
     git -C "$HOME/dotfiles" clean -fd
 fi
 
 # Force mise to purge stale cached configs from memory
-echo "Clearing mise config cache..."
+echo " 🔧 Clearing mise config cache..."
 "$MISE_EXEC" cache clear
 
 # 4. Native mise declarative bootstrap execution
@@ -87,16 +91,16 @@ echo "Clearing mise config cache..."
 
 # 5. Optional: Set Zsh as default shell if not already set
 if [ "$SHELL" != "$(which zsh)" ]; then
-    echo "Changing default shell to Zsh..."
+    echo " 🔧 Changing default shell to Zsh..."
     chsh -s "$(which zsh)"
 fi
 
 # 6. Refresh font cache for Linux
 if [ "$OS" = "Linux" ]; then
-    echo "==> Running Linux font setup..."
+    echo " 🔧 ==> Running Linux font setup..."
     "$MISE_EXEC" run install-fonts-linux
 elif [ "$OS" = "Darwin" ]; then
-    echo "==> Skipping Linux font setup on macOS."
+    echo " 🔧 ==> Skipping Linux font setup on macOS."
 fi
 
 echo "✅ Setup complete! Restart your terminal."
