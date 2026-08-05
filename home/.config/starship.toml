@@ -30,14 +30,14 @@ truncation_length = 4
 "Others" = " "
 
 [username]
-disabled = true
+disabled = false
 show_always = true
 style_user = "bg:surface0 fg:text"
 style_root = "bg:surface0 fg:text"
 format = " $user "
 
 [line_break]
-disabled = true
+disabled = false
 
 [character]
 disabled = false
@@ -49,7 +49,7 @@ vimcmd_symbol = "[: ](bold fg:yellow)"
 disabled = false
 
 [time]
-disabled = true
+disabled = false
 time_format = "%R"
 format = "[[  $time ](fg:yellow bg:foam)]($style)"
 
@@ -121,7 +121,7 @@ ignore_timeout = true
 
 
 [os]
-disabled = true
+disabled = false
 
 [os.symbols]
 Windows = "󰍲"
