@@ -59,7 +59,9 @@ if type 'vdir' &> /dev/null; then
     alias vdir='vdir --color=auto'
 fi
 
-
+# Modern alternatives for file viewing
+alias less="bat"
+alias more="bat"
 
 # Creates parent directories on demand.
 alias mkdir='mkdir -pv'
@@ -117,7 +119,7 @@ alias .5='cd ../../../../..'
 # -----------------------------------------------------------------------------
 
 # Standard `ls` aliases using `eza`.
-alias ls='eza --icons --group-directories-first'
+#alias ls='eza --icons --group-directories-first'
 
 # Long format detailed listing, including Git status and headers.
 alias ll='eza -la --icons --git --header --group-directories-first'
@@ -426,19 +428,6 @@ alias dt='cd $HOME/Desktop'
 # Configuration paths
 # -----------------------------------------------------------------------------
 
-# Navigates to Chezmoi's local repo.
-if command -v chezmoi > /dev/null; then
-    if [[ "$OSTYPE" =~ ^(cygwin|mingw|msys) ]]; then
-        # shellcheck disable=SC2046,SC2139
-        # TODO verify
-        alias chezmoiconf="cd $(chezmoi source-path | tr '\\/' '/' | tr -d ':' | awk '{print "/"$1}')"
-    else
-        alias chezmoiconf='cd $(chezmoi source-path)'
-    fi
-else
-    alias chezmoiconf='cd $HOME/.local/share/chezmoi'
-fi
-
 # Navigates to Powershell's profile location.
 if [[ "$OSTYPE" =~ ^(cygwin|mingw|msys) ]]; then
     alias powershellconf='cd $HOME/Documents/PowerShell'
@@ -446,16 +435,12 @@ else
     alias powershellconf='cd $HOME/.config/powershell'
 fi
 
-# Navigates to Sublime Text's local repo.
-alias sublimeconf='cd $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User'
-
-
 # Custom paths
 # -----------------------------------------------------------------------------
 
 # Navigates to custom paths.
 alias archives='cd $HOME/Archives'
-alias repos='cd $HOME/Code'
+alias repos='cd $HOME/work'
 
 
 # Varia
