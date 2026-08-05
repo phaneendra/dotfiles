@@ -1,6 +1,5 @@
 #!/bin/sh
 
-printf -- "\nExecuting profile\n"
 
 if [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
   # shellcheck disable=SC2312

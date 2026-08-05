@@ -128,11 +128,7 @@ elif command -v batcat >/dev/null 2>&1; then
   export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 fi
 
-# ----- Bat (better cat) -----
-export BAT_THEME=tokyonight_night
-
 # You may need to manually set your language environment
-export LANG=en_US.UTF-8
 
 # history setup
 HISTFILE=$HOME/.zhistory
@@ -185,7 +181,6 @@ fi
 
 # Point ripgrep to its configuration file.
 # See https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md
-export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
 
 # Includes
@@ -211,14 +206,6 @@ if [ -f "$HOME"/.profile ]; then
     \. "$HOME"/.profile
 fi
 
-# Mise
-# -----------------------------------------------------------------------------
-# Set MISE_ENV based on the OS
-if [[ "$(uname -s)" == "Darwin" ]]; then
-    export MISE_ENV="macos"
-else
-    export MISE_ENV="linux"
-fi
 
 # Activate mise inside Zsh
 eval "$(~/.local/bin/mise activate zsh)"
@@ -226,22 +213,7 @@ eval "$(~/.local/bin/mise activate zsh)"
 # FZF
 # -----------------------------------------------------------------------------
 
-# --- setup fzf theme ---
-fg="#CBE0F0"
-bg="#011628"
-bg_highlight="#143652"
-purple="#B388FF"
-blue="#06BCE4"
-cyan="#2CF9ED"
-
-export FZF_DEFAULT_OPTS="--color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
-
-# -- Use fd instead of fzf --
-
-export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
-
+show_file_or_dir_preview='if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi'
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
@@ -253,11 +225,6 @@ _fzf_compgen_path() {
 _fzf_compgen_dir() {
   fd --type=d --hidden --exclude .git . "$1"
 }
-
-show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
-
-export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
-export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
 # Advanced customization of fzf options via _fzf_comprun function
 # - The first argument to the function is the name of the command.
@@ -283,11 +250,16 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath || 
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'if [ -d $realpath ]; then eza -1 --color=always $realpath; else bat --color=always --line-range :500 $realpath 2>/dev/null; fi'
 
 
-# ---- Zoxide (better cd) ----
+# Zoxide (better cd)
 # -----------------------------------------------------------------------------
 eval "$(zoxide init zsh)"
 
-# ---- Starship (prompt) ----
+# Run fastfetch for interactive terminals
+if [[ $- == *i* ]] && command -v fastfetch &>/dev/null; then
+  fastfetch
+fi
+
+# Starship (prompt)
 # -----------------------------------------------------------------------------
 # Load Starship prompt this should be the last line
 eval "$(starship init zsh)"
