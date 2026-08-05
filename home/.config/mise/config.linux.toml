@@ -1,0 +1,112 @@
+[tools]
+# --- Core Editors & Shell Tools ---
+helix = "latest"
+starship = "latest"
+direnv = "latest"
+
+# --- Cross-Platform Build & C/C++ Toolchain ---
+cmake = "latest"    # Cross-platform build generator
+ninja = "latest"    # Fast build tool
+
+# --- Runtimes ---
+node = "lts"
+python = "3.12"
+go = "1.22"
+
+# --- CLI Search & Navigation ---
+eza = "latest"
+fzf = "latest"
+fd = "latest"
+ripgrep = "latest"
+bat = "latest"
+jq = "latest"
+# curl = "latest"
+# git = "latest"
+gh = "latest"           # Github official command line interface
+git-lfs = "latest"      # Git LFS: mise can manage this extension directly
+delta = "latest"        # Git Delta: High-performance pager # This provides the 'delta' binary
+zoxide = "latest"
+lazygit = "latest"
+
+# --- System Utilities & Monitoring ---
+btop = "latest"         # Modern replacement for top/htop
+dust = "latest"
+fastfetch = "latest"
+watchexec = "latest"    # Modern fswatch replacement
+
+# --- Text, Formatting & Diffs ---
+difftastic = "latest"   # Installs the 'difft' binary natively
+
+# --- Terminal & Shell Extensions ---
+# tmuxinator = "latest"
+# zsh = "latest"
+
+
+[bootstrap.packages]
+# --- Linux System Packages & Build Tools (apt backend) ---
+"apt:build-essential"             = "latest"
+"apt:autoconf"                    = "latest"
+"apt:automake"                    = "latest"
+"apt:cmake"                       = "latest"
+"apt:gdb"                         = "latest"
+"apt:apache2-utils"               = "latest"
+"apt:libglib2.0-dev"              = "latest"
+"apt:libssl-dev"                  = "latest"
+"apt:zlib1g-dev"                  = "latest"
+"apt:apt-transport-https"         = "latest"
+"apt:ca-certificates"             = "latest"
+"apt:software-properties-common"  = "latest"
+"apt:gnupg"                       = "latest"
+
+# --- File Transfer & Sync ---
+"apt:rsync" = "latest"
+"apt:wget" = "latest"
+"apt:unison" = "latest"
+
+# --- Fonts Packages ---
+"apt:fontconfig"                      = "latest"
+
+[env]
+# --- Environment Variables ---
+EDITOR = "hx"
+VISUAL = "hx"
+
+[settings]
+dotfiles.root = "~/dotfiles"
+dotfiles.default_mode = "symlink"
+
+[bootstrap.repos]
+# 1. Main Dotfiles Repository
+"~/dotfiles" = { url = "https://github.com/phaneendra/dotfiles.git", ref = "master" }
+
+# 2. Oh My Zsh Framework
+"~/.oh-my-zsh" = { url = "https://github.com/ohmyzsh/ohmyzsh.git", ref = "master" }
+
+# 3. Oh My Zsh Plugins
+"~/.oh-my-zsh/custom/plugins/fzf-tab" = { url = "https://github.com/Aloxaf/fzf-tab.git", ref = "master" }
+"~/.oh-my-zsh/custom/plugins/zsh-autosuggestions" = { url = "https://github.com/zsh-users/zsh-autosuggestions.git", ref = "master" }
+"~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" = { url = "https://github.com/zsh-users/zsh-syntax-highlighting.git", ref = "master" }
+
+[dotfiles]
+# Target in $HOME = Source inside $settings.dotfiles.root
+"~" = { source = "~/dotfiles/home", mode = "symlink-each" }
+
+[tasks.install-fonts-linux]
+description = "Fallback font installer & font cache refresh for Linux"
+run = """
+#!/usr/bin/env bash
+if [ "$(uname -s)" = "Linux" ]; then
+    echo "Checking JetBrains Mono Nerd Font on Linux..."
+    FONT_DIR="$HOME/.local/share/fonts"
+    mkdir -p "$FONT_DIR"
+    if ! fc-list | grep -i "JetBrainsMono" &>/dev/null; then
+        echo "Downloading JetBrains Mono Nerd Font..."
+        ZIP_FILE="/tmp/JetBrainsMono.zip"
+        curl -fLo "$ZIP_FILE" https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+        unzip -o "$ZIP_FILE" -d "$FONT_DIR"
+        rm "$ZIP_FILE"
+        fc-cache -fv "$FONT_DIR"
+        echo "✓ JetBrains Mono Nerd Font installed and cache updated."
+    fi
+fi
+"""
