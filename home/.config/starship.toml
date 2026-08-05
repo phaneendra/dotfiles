@@ -27,7 +27,7 @@ ssh_only = false       # Ensures it displays even when not on SSH
 format = "[@$hostname]($style) " # Keeps styling but lets you override below
 
 [fill]
-symbol = "- "
+symbol = "-"
 
 [singularity]
 disabled = true
