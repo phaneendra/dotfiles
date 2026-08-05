@@ -4,6 +4,9 @@ set -e
 # Always switch context to $HOME
 cd "$HOME"
 
+# Detect Operating System
+OS="$(uname -s)"
+
 echo "🚀 Starting machine bootstrap in $PWD..."
 
 # 1. Install system essentials based on OS
@@ -45,11 +48,27 @@ fi
 
 
 # 3. Pre-seed global mise config from GitHub so mise knows what to bootstrap
-echo "Downloading global mise configuration..."
+case "$OS" in
+    Linux*)  CONFIG_FILE="config.linux.toml" ;;
+    Darwin*) CONFIG_FILE="config.macos.toml" ;;
+    *)
+        echo "Error: Unsupported OS '$OS'" >&2
+        exit 1
+        ;;
+esac
+
+echo "Downloading global mise configuration ($CONFIG_FILE)..."
 mkdir -p "$HOME/.config/mise"
 curl -fsSL -H "Cache-Control: no-cache" \
-    https://raw.githubusercontent.com/phaneendra/dotfiles/master/home/.config/mise/config.toml \
-    -o "$HOME/.config/mise/config.toml"
+    https://raw.githubusercontent.com/phaneendra/dotfiles/master/home/.config/mise/$CONFIG_FILE \
+    -o "$HOME/.config/mise/$CONFIG_FILE"
+
+# Tell Mise to load the platform file via environment variable (or ~/.miserc.toml)
+if [[ "$(uname -s)" == "Darwin" ]]; then
+    export MISE_ENV="macos"
+else
+    export MISE_ENV="linux"
+fi
 
 # Force mise to purge stale cached configs from memory
 echo "Clearing mise config cache..."
@@ -66,6 +85,11 @@ if [ "$SHELL" != "$(which zsh)" ]; then
 fi
 
 # 6. Refresh font cache for Linux
-"$MISE_EXEC" run install-fonts-linux
+if [ "$OS" = "Linux" ]; then
+    echo "==> Running Linux font setup..."
+    "$MISE_EXEC" run install-fonts-linux
+elif [ "$OS" = "Darwin" ]; then
+    echo "==> Skipping Linux font setup on macOS."
+fi
 
 echo "✅ Setup complete! Restart your terminal."

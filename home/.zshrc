@@ -211,10 +211,19 @@ if [ -f "$HOME"/.profile ]; then
     \. "$HOME"/.profile
 fi
 
+# Mise
+# -----------------------------------------------------------------------------
+# Set MISE_ENV based on the OS
+if [[ "$(uname -s)" == "Darwin" ]]; then
+    export MISE_ENV="macos"
+else
+    export MISE_ENV="linux"
+fi
+
 # Activate mise inside Zsh
 eval "$(~/.local/bin/mise activate zsh)"
 
-# ---- FZF -----
+# FZF
 # -----------------------------------------------------------------------------
 
 # --- setup fzf theme ---
