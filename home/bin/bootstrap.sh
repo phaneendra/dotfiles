@@ -61,7 +61,7 @@ echo "Downloading global mise configuration ($CONFIG_FILE)..."
 mkdir -p "$HOME/.config/mise"
 curl -fsSL -H "Cache-Control: no-cache" \
     https://raw.githubusercontent.com/phaneendra/dotfiles/master/home/.config/mise/$CONFIG_FILE \
-    -o "$HOME/.config/mise/$CONFIG_FILE"
+    -o "$HOME/.config/mise/config.toml"
 
 # Tell Mise to load the platform file via environment variable (or ~/.miserc.toml)
 if [[ "$(uname -s)" == "Darwin" ]]; then
