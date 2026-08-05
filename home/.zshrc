@@ -138,10 +138,12 @@ export LANG=en_US.UTF-8
 HISTFILE=$HOME/.zhistory
 SAVEHIST=1000
 HISTSIZE=999
-setopt share_history
-setopt hist_expire_dups_first
-setopt hist_ignore_dups
-setopt hist_verify
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_VERIFY
+setopt HIST_IGNORE_DUPS          # Don't record contiguous duplicates
+setopt HIST_REDUCE_BLANKS        # Remove extra blanks from each command
+setopt INC_APPEND_HISTORY        # Write to history file immediately, not on exit
+setopt SHARE_HISTORY             # Share history across sessions safely
 
 # completion using arrow keys (based on history)
 bindkey '^[[A' history-search-backward
