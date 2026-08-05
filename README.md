@@ -1,4 +1,4 @@
-# dotfiles
+# Dotfiles
 
 Bootstrap dev environments in a single command!
 
@@ -10,7 +10,7 @@ Managed with [mise](https://mise.jdx.dev/), a great dotfiles manager.
 
 ## Getting started
 
-Check out the [Quick Start](https://mise.jdx.dev/walkthrough.html) page.
+Check out the [QuickStart](https://mise.jdx.dev/walkthrough.html) page.
 
 ## Install mise and the dotfiles and recommended tools on any new machine
 
@@ -41,7 +41,7 @@ Check out the [Quick Start](https://mise.jdx.dev/walkthrough.html) page.
 On any machine, you can pull and apply the latest changes from your repo with:
 
 ```sh
-mise bootstrap -f -y
+mise bootstrap -y --force-dotfiles
 ```
 
 ## Add a package

@@ -119,7 +119,7 @@ alias .5='cd ../../../../..'
 # -----------------------------------------------------------------------------
 
 # Standard `ls` aliases using `eza`.
-#alias ls='eza --icons --group-directories-first'
+alias ls='eza --icons --group-directories-first'
 
 # Long format detailed listing, including Git status and headers.
 alias ll='eza -la --icons --git --header --group-directories-first'
