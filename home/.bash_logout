@@ -1,5 +1,3 @@
-# -*-mode:bash-*- vim:ft=bash
-
 # ~/.bash_logout
 # =============================================================================
 # Executed by bash when login shell exits.

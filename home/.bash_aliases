@@ -1,6 +1,3 @@
-# -*-mode:bash-*- vim:ft=bash
-
-# ~/.bash_aliases
 # =============================================================================
 # Shell aliases sourced by `~/.bashrc` and `~/.zshrc`.
 #

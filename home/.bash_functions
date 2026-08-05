@@ -1,5 +1,3 @@
-# -*-mode:bash-*- vim:ft=bash
-
 # ~/.bash_functions
 # =============================================================================
 # Shell functions sourced by `~/.bashrc` and `~/.zshrc`.

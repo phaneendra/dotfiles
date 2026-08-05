@@ -1,5 +1,3 @@
-# -*-mode:bash-*- vim:ft=bash
-
 # ~/.bash_profile
 # =============================================================================
 # Executed by bash for login shells.

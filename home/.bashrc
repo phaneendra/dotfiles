@@ -1,5 +1,3 @@
-# -*-mode:bash-*- vim:ft=bash
-
 # ~/.bashrc
 # =============================================================================
 # Executed by bash for non-login shells.

@@ -1,5 +1,3 @@
-# -*-mode:gitignore-*- vim:ft=gitignore
-
 # ~/.ripgreprc
 # =============================================================================
 # Configures default options for ripgrep line-oriented search tool.

@@ -1,6 +1,3 @@
-# -*-mode:sh-*- vim:ft=shell-script
-
-# ~/.zshrc
 # =============================================================================
 # Executed by Z shell for interactive shells.
 #
