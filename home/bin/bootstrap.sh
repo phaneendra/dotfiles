@@ -70,6 +70,13 @@ else
     export MISE_ENV="linux"
 fi
 
+# Clean up dirty local state in ~/dotfiles if it exists
+if [ -d "$HOME/dotfiles/.git" ]; then
+    echo "🧹 Cleaning untracked changes in ~/dotfiles..."
+    git -C "$HOME/dotfiles" reset --hard HEAD
+    git -C "$HOME/dotfiles" clean -fd
+fi
+
 # Force mise to purge stale cached configs from memory
 echo "Clearing mise config cache..."
 "$MISE_EXEC" cache clear
