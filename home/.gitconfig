@@ -4,8 +4,6 @@
 #
 # See https://git-scm.com/docs/git-config
 #
-# {{- /* This file supports Go's text/template language. */ -}}
-#
 # Sources:
 #     https://delicious-insights.com/en/posts/mastering-git-submodules/
 #     https://github.com/haacked/dotfiles
