@@ -79,9 +79,30 @@ dotfiles.default_mode = "symlink"
 "~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" = { url = "https://github.com/zsh-users/zsh-syntax-highlighting.git", ref = "master" }
 
 [dotfiles]
-# Target in $HOME = Source inside $settings.dotfiles.root
-"~" = { source = "~/dotfiles/home", mode = "symlink-each" }
+# 1. Handle your gitconfig specifically as a template file
 "~/.gitconfig" = { source = "~/dotfiles/home/.gitconfig", mode = "template" }
+
+# 2. Map all folders inside ~/.config (bat, helix, nvim, etc.) and individual files like starship.toml
+"~/.config" = { source = "~/dotfiles/home/.config", mode = "symlink-each" }
+
+# 3. Map individual standalone files that sit directly in your home root
+"~/.bash_aliases"      = "~/dotfiles/home/.bash_aliases"
+"~/.bash_functions"    = "~/dotfiles/home/.bash_functions"
+"~/.bash_logout"       = "~/dotfiles/home/.bash_logout"
+"~/.bash_profile"      = "~/dotfiles/home/.bash_profile"
+"~/.bashrc"            = "~/dotfiles/home/.bashrc"
+"~/.curlrc"            = "~/dotfiles/home/.curlrc"
+"~/.gitconfig_aliases" = "~/dotfiles/home/.gitconfig_aliases"
+"~/.gitignore_global"  = "~/dotfiles/home/.gitignore_global"
+"~/.gitmessage.txt"    = "~/dotfiles/home/.gitmessage.txt"
+"~/.profile"           = "~/dotfiles/home/.profile"
+"~/.ripgreprc"         = "~/dotfiles/home/.ripgreprc"
+"~/.wgetrc"            = "~/dotfiles/home/.wgetrc"
+"~/.zshenv"            = "~/dotfiles/home/.zshenv"
+"~/.zshrc"             = "~/dotfiles/home/.zshrc"
+
+# 4. Map your personal binaries directory
+"~/bin" = { source = "~/dotfiles/home/bin", mode = "symlink-each" }
 
 [tasks.install-fonts-linux]
 description = "Fallback font installer & font cache refresh for Linux"
