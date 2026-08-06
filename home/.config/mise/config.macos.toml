@@ -54,7 +54,7 @@ difftastic = "latest"   # Installs the 'difft' binary natively
 "brew:unison" = "latest"
 
 # --- Fonts & Homebrew Packages ---
-"brew:font-jetbrains-mono-nerd-font"  = "latest"
+"brew-cask:font-jetbrains-mono-nerd-font"  = "latest"
 
 [env]
 # --- Environment Variables ---
