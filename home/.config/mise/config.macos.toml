@@ -1,5 +1,6 @@
 [tools]
 # --- Core Editors & Shell Tools ---
+neovim = "latest"
 helix = "latest"
 starship = "latest"
 direnv = "latest"
