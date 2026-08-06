@@ -30,7 +30,6 @@ zoxide = "latest"
 lazygit = "latest"
 
 # --- System Utilities & Monitoring ---
-btop = "latest"         # Modern replacement for top/htop
 dust = "latest"
 fastfetch = "latest"
 watchexec = "latest"    # Modern fswatch replacement
@@ -48,6 +47,7 @@ difftastic = "latest"   # Installs the 'difft' binary natively
 # --- System Utilities & Monitoring ---
 "brew:rich-cli" = "latest"  # Homebrew formula for rich CLI utility
 "brew:zlib" = "latest"
+"brew:btop" = "latest"     # Homebrew formula for btop
 
 # --- File Transfer & Sync ---
 "brew:rsync" = "latest"
