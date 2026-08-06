@@ -105,10 +105,10 @@
 
 [user]
     # Specify the email address of the author/committer.
-    email = "{{ .email }}"
+    email = "{{ env.GIT_EMAIL }}"
 
     # Specify the username of the author/committer.
-    name = "{{ .name }}"
+    name = "{{ env.GIT_NAME }}"
 
 [include]
     # Include aliases.

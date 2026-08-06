@@ -70,6 +70,19 @@ else
     export MISE_ENV="linux"
 fi
 
+# Set GIT_NAME and GIT_EMAIL environment variables from mise config
+if [ -z "${GIT_EMAIL}" ]; then
+    echo "❌ Critical Error: GIT_EMAIL is not set."
+    echo "👉 Please run: export GIT_EMAIL='your.email@example.com'"
+    exit 1
+fi
+
+if [ -z "${GIT_NAME}" ]; then
+    echo "❌ Critical Error: GIT_NAME is not set."
+    echo "👉 Please run: export GIT_NAME='your.name'"
+    exit 1
+fi
+
 # Ensure ~/dotfiles exists as a git repo and force-sync with remote
 if [ -d "$HOME/dotfiles/.git" ]; then
     echo " 🔄 Force-syncing ~/dotfiles with remote repository..."
