@@ -102,7 +102,7 @@ plugins=(
 
 if [[ "$OSTYPE" =~ ^darwin ]]; then
     plugins+=(
-        osx                 # Utilities for macOS
+        macos                 # Utilities for macOS
     )
 fi
 
