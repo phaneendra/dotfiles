@@ -122,21 +122,21 @@ ls() {
     if [ "$1" = "-lart" ]; then
         eza -la --icons --git --header --group-directories-first --sort=modified --reverse "${@:2}"
     else
-        eza --tree --level=2 --icons --group-directories-first "$@"
+        eza --tree --level=2 --sort=modified --reverse --icons --group-directories-first "$@"
     fi
 }
 
 # Long format detailed listing, including Git status and headers.
-alias ll='eza -la --icons --git --header --group-directories-first'
+alias ll='eza -la --sort=modified --reverse --icons --git --header --group-directories-first'
 
 # Tree view of directories, with two levels and icons.
-alias lt='eza --tree --level=2 --icons'
+alias lt='eza --tree --level=2 --icons --sort=modified --reverse --group-directories-first'
 
 # Modified time sorted listing, showing most recent first.
 alias lm='eza -la --sort=modified --reverse --icons'
 
 # Detailed listing including hidden files
-alias la='eza -lah --icons --git --header --group-directories-first'
+alias la='eza -lah --sort=modified --reverse --icons --git --header --group-directories-first'
 
 # Lists directories only, in long format.
 alias lsd='ls -l | grep --color=never "^d"'
