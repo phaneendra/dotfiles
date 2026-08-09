@@ -203,6 +203,10 @@ if [ -f "$HOME"/.profile ]; then
     \. "$HOME"/.profile
 fi
 
+# Load environment variables from .env file, most of the static info is loaded from .zshenv only dynamic ones are loaded from .env
+if [ -f "$HOME/.env" ]; then
+    export $(grep -v '^#' "$HOME/.env" | xargs)
+fi
 
 # Activate mise inside Zsh
 eval "$(~/.local/bin/mise activate zsh)"
