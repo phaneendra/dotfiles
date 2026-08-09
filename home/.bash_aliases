@@ -118,6 +118,8 @@ alias .5='cd ../../../../..'
 # Standard `ls` aliases using `eza`.
 # alias ls='eza --icons --group-directories-first'
 
+# Clear any existing alias first
+unalias ls 2>/dev/null
 ls() {
     if [ "$1" = "-lart" ]; then
         eza -la --icons --git --header --group-directories-first --sort=modified --reverse "${@:2}"
