@@ -82,6 +82,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_DOTENV_PROMPT=false
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
