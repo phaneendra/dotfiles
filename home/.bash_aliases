@@ -116,7 +116,15 @@ alias .5='cd ../../../../..'
 # -----------------------------------------------------------------------------
 
 # Standard `ls` aliases using `eza`.
-alias ls='eza --icons --group-directories-first'
+# alias ls='eza --icons --group-directories-first'
+
+ls() {
+    if [ "$1" = "-lart" ]; then
+        eza -la --icons --git --header --group-directories-first --sort=modified --reverse "${@:2}"
+    else
+        eza --tree --level=2 --icons --group-directories-first "$@"
+    fi
+}
 
 # Long format detailed listing, including Git status and headers.
 alias ll='eza -la --icons --git --header --group-directories-first'
@@ -125,7 +133,7 @@ alias ll='eza -la --icons --git --header --group-directories-first'
 alias lt='eza --tree --level=2 --icons'
 
 # Modified time sorted listing, showing most recent first.
-alias lm='eza -l --sort=modified --reverse --icons'
+alias lm='eza -la --sort=modified --reverse --icons'
 
 # Detailed listing including hidden files
 alias la='eza -lah --icons --git --header --group-directories-first'
