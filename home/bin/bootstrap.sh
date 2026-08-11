@@ -9,6 +9,23 @@ OS="$(uname -s)"
 
 echo "🚀 Starting machine bootstrap in $PWD..."
 
+# Load environment variables from .env file if it exists
+# Check if .env file exists
+if [ -f .env ]; then
+  # Read file line by line, preserving spaces and special characters
+  while IFS='=' read -r key value || [ -n "$key" ]; do
+    # Skip lines starting with # (comments) and empty lines
+    [[ "$key" =~ ^#.*$ ]] && continue
+    [[ -z "$key" ]] && continue
+
+    # Strip leading/trailing quotes from the value if present
+    value=$(echo "$value" | sed -e 's/^"//' -e 's/"$//' -e "s/^'//" -e "'$//")
+
+    # Export the variable
+    export "$key=$value"
+  done < .env
+fi
+
 # 1. Install system essentials based on OS
 OS="$(uname -s)"
 if [ "$OS" = "Darwin" ]; then
