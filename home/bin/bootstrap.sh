@@ -10,8 +10,9 @@ OS="$(uname -s)"
 echo "🚀 Starting machine bootstrap in $PWD..."
 
 # Load environment variables from .env file if it exists
+ENV_FILE="$HOME/.env"
 # Check if .env file exists
-if [ -f .env ]; then
+if [ -f "$ENV_FILE" ]; then
   # Read file line by line, preserving spaces and special characters
   while IFS='=' read -r key value || [ -n "$key" ]; do
     # Skip lines starting with # (comments) and empty lines
@@ -23,7 +24,9 @@ if [ -f .env ]; then
 
     # Export the variable
     export "$key=$value"
-  done < .env
+  done < "$ENV_FILE"
+else
+  echo "Warning: $ENV_FILE not found."
 fi
 
 # 1. Install system essentials based on OS
