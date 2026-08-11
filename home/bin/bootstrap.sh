@@ -19,11 +19,17 @@ if [ -f "$ENV_FILE" ]; then
     [[ "$key" =~ ^#.*$ ]] && continue
     [[ -z "$key" ]] && continue
 
-    # Strip leading/trailing quotes from the value if present
-    value=$(echo "$value" | sed -e 's/^"//' -e 's/"$//' -e "s/^'//" -e "'$//")
+    # Strip leading/trailing double quotes using pure Bash
+    value="${value%\"}"
+    value="${value#\"}"
 
-    # Export the variable
-    export "$key=$value"
+    # Strip leading/trailing single quotes using pure Bash
+    value="${value%\'}"
+    value="${value#\'}"
+
+    # Safely assign and export
+    printf -v "$key" '%s' "$value"
+    export "$key"
   done < "$ENV_FILE"
 else
   echo "Warning: $ENV_FILE not found."
